@@ -30,53 +30,78 @@
 }
 
 /*
- * Solar Dusk — FireSafe.AI Design System
+ * FireSafe.AI — Light & Clean Design System
  *
- * A dark fire-safety theme. Deep navy backgrounds with warm amber accents
- * evoke the pre-dawn skies when firefighters are on scene. Single dark mode
- * only — no light mode toggle.
+ * Professional light theme inspired by Stripe/Linear.
+ * Clean whites, subtle grays, with a refined orange accent.
  *
  * Palette:
- *   Background  — deep navy-black          HSL 222 25% 7%
- *   Foreground  — warm off-white           HSL  38 20% 90%
- *   Primary     — amber (fire)             HSL  38 92% 54%
- *   Accent      — orange (embers)          HSL  25 85% 55%
- *   Destructive — signal red               HSL   0 72% 58%
+ *   Background  — white                    HSL   0  0% 100%
+ *   Foreground  — near-black               HSL 220 14%  10%
+ *   Primary     — refined orange            HSL  24 95%  53%
+ *   Accent      — soft orange              HSL  25 90%  95%
+ *   Destructive — signal red               HSL   0 72%  51%
  */
 :root {
-  /* ─── Core ─────────────────────────────────────────── */
-  --background:        222 25% 7%;
-  --foreground:         38 20% 90%;
+  /* ─── Core (warm white) ────────────────────────────── */
+  --background:         30  50%  99%;
+  --foreground:         24  30%  10%;
 
   /* ─── Card / Popover ────────────────────────────────── */
-  --card:              222 22% 10%;
-  --card-foreground:    38 20% 90%;
-  --popover:           222 22% 11%;
-  --popover-foreground: 38 20% 90%;
+  --card:                0   0% 100%;
+  --card-foreground:    24  30%  10%;
+  --popover:             0   0% 100%;
+  --popover-foreground: 24  30%  10%;
 
-  /* ─── Brand / Action ────────────────────────────────── */
-  --primary:            38 92% 54%;   /* amber */
-  --primary-foreground: 222 25%  7%;  /* dark text on amber bg */
-  --secondary:          222 18% 15%;
-  --secondary-foreground: 38 15% 80%;
+  /* ─── Brand / Action (deeper orange for contrast) ──── */
+  --primary:            22  90%  44%;
+  --primary-foreground:  0   0% 100%;
+  --secondary:          30  20%  96%;
+  --secondary-foreground:24 20%  30%;
 
-  /* ─── Muted ─────────────────────────────────────────── */
-  --muted:              222 18% 13%;
-  --muted-foreground:   222 12% 50%;
+  /* ─── Muted (warm gray) ────────────────────────────── */
+  --muted:              30  15%  96%;
+  --muted-foreground:   24  10%  46%;
 
-  /* ─── Accent (orange / ember) ───────────────────────── */
-  --accent:              25 85% 55%;
-  --accent-foreground:   38 20% 90%;
+  /* ─── Accent (soft orange tint) ────────────────────── */
+  --accent:             25  90%  95%;
+  --accent-foreground:  22  90%  38%;
 
   /* ─── Danger ─────────────────────────────────────────── */
-  --destructive:          0 72% 58%;
-  --destructive-foreground: 38 20% 90%;
+  --destructive:         0  72%  51%;
+  --destructive-foreground: 0  0% 100%;
 
-  /* ─── Structural ─────────────────────────────────────── */
-  --border:             222 18% 17%;
-  --input:              222 18% 13%;
-  --ring:                38 92% 54%;  /* amber focus ring */
+  /* ─── Structural (warm borders) ────────────────────── */
+  --border:             30  15%  90%;
+  --input:              30  15%  90%;
+  --ring:               22  90%  44%;
   --radius:             0.5rem;
+}
+
+/* ─── Flame animations ────────────────────────────────── */
+@keyframes flameBreath {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  20% { transform: scale(1.08) rotate(-1.2deg); }
+  45% { transform: scale(0.93) rotate(1deg); }
+  70% { transform: scale(1.05) rotate(-0.6deg); }
+}
+
+@keyframes flameLayer1 {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.9; }
+  35% { transform: scaleY(1.1) scaleX(0.93); opacity: 1; }
+  65% { transform: scaleY(0.91) scaleX(1.05); opacity: 0.78; }
+}
+
+@keyframes flameLayer2 {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.85; }
+  40% { transform: scaleY(1.12) scaleX(0.9); opacity: 1; }
+  75% { transform: scaleY(0.9) scaleX(1.06); opacity: 0.7; }
+}
+
+@keyframes flameLayer3 {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.7; }
+  30% { transform: scaleY(1.08) scaleX(0.93); opacity: 0.95; }
+  60% { transform: scaleY(0.88) scaleX(1.06); opacity: 0.5; }
 }
 
 @layer base {
