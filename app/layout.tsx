@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Flame } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { NavDropdown } from '@/components/nav-dropdown'
 import './globals.css'
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -49,13 +50,26 @@ export const metadata: Metadata = {
   },
 }
 
+const toolLinks = [
+  { name: 'FDS/CFD Modeling', href: '/tools/fds-cfd' },
+  { name: 'Smoke Control', href: '/tools/smoke-control' },
+  { name: 'Egress Analysis', href: '/tools/egress' },
+  { name: 'CodeCompare', href: APP_URL },
+  { name: 'Code Consulting', href: '/tools/code-consulting' },
+  { name: 'Fire Detection', href: '/tools/fire-detection' },
+  { name: 'Suppression Systems', href: '/tools/suppression' },
+  { name: 'HazMat & Risk', href: '/tools/hazmat-risk' },
+  { name: 'StoragePro', href: '/tools/storagepro' },
+  { name: 'PE Tutor', href: '/tools/pe-tutor' },
+]
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       {GA_ID && (
         <>
           <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
@@ -68,26 +82,43 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="min-h-screen bg-background">
-          <nav className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-sm">
-            <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+          <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/92 backdrop-blur-xl backdrop-saturate-[1.4]">
+            <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+              {/* Logo */}
               <Link href="/" className="flex items-center gap-2.5">
-                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/15 ring-1 ring-primary/30">
-                  <Flame className="h-4 w-4 text-primary" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/30">
+                  <Flame className="h-4.5 w-4.5 text-primary" />
                 </div>
-                <span className="text-sm font-semibold">FireSafe<span className="text-primary">.AI</span></span>
+                <span className="text-sm font-bold tracking-tight">FireSafe<span className="text-primary">.AI</span></span>
               </Link>
+
+              {/* Center nav links */}
+              <div className="hidden md:flex items-center gap-1">
+                <NavDropdown label="Tools" items={toolLinks} />
+                <Link href="/about" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted">
+                  About
+                </Link>
+                <Link href="/mission" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted">
+                  Mission
+                </Link>
+                <Link href="/pricing" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted">
+                  Pricing
+                </Link>
+              </div>
+
+              {/* Right-side CTAs */}
               <div className="flex items-center gap-3">
                 <Button variant="ghost" size="sm" asChild><a href={APP_URL}>Sign in</a></Button>
                 <Button size="sm" asChild><a href={APP_URL}>Get started</a></Button>
               </div>
             </div>
           </nav>
-          <div className="pt-14">
+          <div className="pt-16">
             {children}
           </div>
-          <footer className="border-t border-border px-6 py-8 text-center text-xs text-muted-foreground">
+          <footer className="border-t border-border bg-muted px-6 py-8 text-center text-[11.5px] text-muted-foreground">
             <p>FireSafe.AI outputs are for reference only and do not constitute engineering advice. The engineer of record is responsible for verifying all outputs against applicable codes. AHJ has final authority.</p>
-            <p className="mt-2">&copy; {new Date().getFullYear()} FireSafe.AI</p>
+            <p className="mt-1">&copy; {new Date().getFullYear()} FireSafe.AI</p>
           </footer>
         </div>
       </body>
