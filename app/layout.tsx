@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import Link from 'next/link'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Flame } from 'lucide-react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { NavDropdown } from '@/components/nav-dropdown'
 import './globals.css'
@@ -22,8 +22,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s — FireSafe.AI',
-    default: 'FireSafe.AI — AI Tools for Fire Protection Engineering',
+    template: '%s â FireSafe.AI',
+    default: 'FireSafe.AI â AI Tools for Fire Protection Engineering',
   },
   description:
     'AI-powered fire protection engineering tools: FDS/CFD modeling, smoke control analysis, egress calculations, code consulting, sprinkler design, and more. Built for CFPEs on NFPA, IBC, and IFC standards.',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'FireSafe.AI',
-    title: 'FireSafe.AI — AI Tools for Fire Protection Engineering',
+    title: 'FireSafe.AI â AI Tools for Fire Protection Engineering',
     description:
       'AI-powered fire protection engineering tools built on NFPA, IBC, and IFC standards.',
   },
@@ -86,9 +86,13 @@ export default function RootLayout({
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/30">
-                  <Flame className="h-4.5 w-4.5 text-primary" />
-                </div>
+                <Image
+                  src="/logo-mark.svg"
+                  alt="FireSafe.AI logo"
+                  width={32}
+                  height={32}
+                  className="h-8 w-8"
+                />
                 <span className="text-sm font-bold tracking-tight">FireSafe<span className="text-primary">.AI</span></span>
               </Link>
 
