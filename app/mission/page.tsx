@@ -4,11 +4,11 @@ import { Flame, ArrowRight, Sparkles, BookOpen, Clock, Users } from 'lucide-reac
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
 
 export const metadata: Metadata = {
-  title: 'Our Mission â FireSafe.AI',
+  title: 'Our Mission \u2014 FireSafe.AI',
   description:
     'We gave ourselves fire. We owe ourselves mastery over it. FireSafe.AI exists to close the gap between what we know about fire safety and what we apply.',
   openGraph: {
-    title: 'Our Mission â FireSafe.AI',
+    title: 'Our Mission \u2014 FireSafe.AI',
     description:
       'We gave ourselves fire. We owe ourselves mastery over it.',
   },
@@ -18,7 +18,7 @@ const milestones = [
   {
     year: '10,000 BC',
     event: 'Controlled fire',
-    detail: 'Humanity learns to hold flame â agriculture, warmth, civilization follow.',
+    detail: 'Humanity learns to hold flame \u2014 agriculture, warmth, civilization follow.',
   },
   {
     year: '64 AD',
@@ -45,7 +45,7 @@ const milestones = [
 export default function MissionPage() {
   return (
     <main className="overflow-hidden">
-      {/* ââ Hero â Manifesto Opening ââ */}
+      {/* Hero - Manifesto Opening */}
       <section className="relative bg-gradient-to-b from-background via-background to-muted/20 px-6 pb-28 pt-36">
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
@@ -60,14 +60,14 @@ export default function MissionPage() {
             </span>
           </h1>
           <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Ten thousand years ago, a species that had no right to survive learned to hold flame in its hands. That act â reckless, sacred, world-changing â made everything possible.
+            Ten thousand years ago, a species that had no right to survive learned to hold flame in its hands. That act &mdash; reckless, sacred, world-changing &mdash; made everything possible.
           </p>
         </div>
         {/* Decorative gradient orb */}
         <div className="pointer-events-none absolute left-1/2 top-20 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/[0.04] blur-[100px]" />
       </section>
 
-      {/* ââ The Arc â Narrative ââ */}
+      {/* The Arc - Narrative */}
       <section className="border-t border-border/50 bg-muted/20 px-6 py-24">
         <div className="mx-auto max-w-2xl">
           <p className="text-lg leading-[1.85] text-muted-foreground sm:text-xl">
@@ -77,7 +77,7 @@ export default function MissionPage() {
             But we never finished the work.
           </p>
           <p className="mt-6 text-lg leading-[1.85] text-muted-foreground sm:text-xl">
-            We built towers of glass and steel and filled them with people and called them safe. We wrote codes â thousands of pages, tens of thousands of clauses â that encode the hard-won lessons of every fire that ever stole a life. NFPA. IBC. IFC. The collected grief of centuries, translated into numbers and distances and flow rates.
+            We built towers of glass and steel and filled them with people and called them safe. We wrote codes &mdash; thousands of pages, tens of thousands of clauses &mdash; that encode the hard-won lessons of every fire that ever stole a life. NFPA. IBC. IFC. The collected grief of centuries, translated into numbers and distances and flow rates.
           </p>
           <p className="mt-6 text-lg leading-[1.85] text-muted-foreground sm:text-xl">
             And then we asked engineers to search those codes by hand.
@@ -85,7 +85,7 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* ââ Stats Ribbon â Startup-style impact numbers ââ */}
+      {/* Stats Ribbon */}
       <section className="border-t border-border/50 bg-foreground px-6 py-20 text-background">
         <div className="mx-auto grid max-w-5xl gap-10 sm:grid-cols-3">
           {[
@@ -103,12 +103,12 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* ââ The Reckoning â Pull Quote ââ */}
+      {/* The Reckoning - Pull Quote */}
       <section className="border-t border-border/50 px-6 py-24">
         <div className="mx-auto max-w-3xl">
           <blockquote className="border-l-4 border-primary pl-6 sm:pl-8">
             <p className="text-2xl font-bold leading-snug tracking-tight text-foreground sm:text-3xl">
-              They die not because the knowledge doesn&apos;t exist â it does, in meticulous detail, across dozens of standards. They die because the distance between knowledge and action is still measured in hours, weeks, and human error.
+              They die not because the knowledge doesn&apos;t exist &mdash; it does, in meticulous detail, across dozens of standards. They die because the distance between knowledge and action is still measured in hours, weeks, and human error.
             </p>
           </blockquote>
           <div className="mt-12 space-y-6">
@@ -122,7 +122,7 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* ââ Timeline â History of fire & code (startup "journey" element) ââ */}
+      {/* Timeline - History of fire and code */}
       <section className="border-t border-border/50 bg-muted/20 px-6 py-24">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-primary">
@@ -157,7 +157,7 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* ââ The Conviction ââ */}
+      {/* The Conviction */}
       <section className="border-t border-border/50 px-6 py-24">
         <div className="mx-auto max-w-2xl">
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary">
@@ -168,7 +168,7 @@ export default function MissionPage() {
           </p>
           <div className="mt-10 space-y-6">
             <p className="text-lg leading-[1.85] text-muted-foreground">
-              AI does not tire at 2 AM. AI does not skip the exception clause. AI does not forget that NFPA 13 Section 8.15.8.1 was revised in 2022 and that the 2019 edition â the one your jurisdiction still enforces â says something different.
+              AI does not tire at 2 AM. AI does not skip the exception clause. AI does not forget that NFPA 13 Section 8.15.8.1 was revised in 2022 and that the 2019 edition &mdash; the one your jurisdiction still enforces &mdash; says something different.
             </p>
             <p className="text-lg leading-[1.85] text-muted-foreground">
               This is not automation. This is <span className="font-semibold text-foreground">amplification</span>. The engineer decides. The AI ensures nothing was missed in the deciding.
@@ -177,7 +177,7 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* ââ The Path Forward â Pillars (startup "values" element) ââ */}
+      {/* The Path Forward - Pillars */}
       <section className="border-t border-border/50 bg-foreground px-6 py-24 text-background">
         <div className="mx-auto max-w-5xl">
           <h2 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-orange-400">
@@ -230,7 +230,7 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* ââ Closing â "Open letter" style (startup manifesto closer) ââ */}
+      {/* Closing - Manifesto closer */}
       <section className="border-t border-border/50 bg-gradient-to-b from-muted/20 to-background px-6 py-28">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-3xl font-extrabold leading-snug tracking-tight text-foreground sm:text-4xl">
@@ -241,19 +241,19 @@ export default function MissionPage() {
           </p>
           <div className="mx-auto mt-12 h-px w-16 bg-border" />
           <p className="mt-8 text-sm italic text-muted-foreground">
-            â The FireSafe.AI Team
+            &mdash; The FireSafe.AI Team
           </p>
         </div>
       </section>
 
-      {/* ââ CTA ââ */}
+      {/* CTA */}
       <section className="border-t border-border/50 px-6 py-20">
         <div className="mx-auto max-w-xl text-center">
           <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             Join the mission.
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Start using FireSafe.AI today â free for individual engineers.
+            Start using FireSafe.AI today &mdash; free for individual engineers.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <a
@@ -270,4 +270,3 @@ export default function MissionPage() {
     </main>
   )
 }
-
