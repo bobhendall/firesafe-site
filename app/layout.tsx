@@ -22,11 +22,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s â FireSafe.AI',
-    default: 'FireSafe.AI â AI Tools for Fire Protection Engineering',
+    template: '%s \u2014 FireSafe.AI',
+    default: 'FireSafe.AI \u2014 AI Tools for Fire Protection Engineering',
   },
   description:
-    'AI-powered fire protection engineering tools: FDS/CFD modeling, smoke control analysis, egress calculations, code consulting, sprinkler design, and more. Built for CFPEs on NFPA, IBC, and IFC standards.',
+    'AI-powered fire protection engineering tools: FDS/CFD modeling, smoke control analysis, egress calculations, code consulting, sprinkler design, and more. Built for PEs on NFPA, IBC, and IFC standards.',
   keywords: [
     'fire protection engineering software',
     'AI fire protection',
@@ -37,12 +37,31 @@ export const metadata: Metadata = {
     'fire code comparison',
   ],
   metadataBase: new URL('https://firesafe.ai'),
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     type: 'website',
     siteName: 'FireSafe.AI',
-    title: 'FireSafe.AI â AI Tools for Fire Protection Engineering',
+    title: 'FireSafe.AI \u2014 AI Tools for Fire Protection Engineering',
     description:
       'AI-powered fire protection engineering tools built on NFPA, IBC, and IFC standards.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'FireSafe.AI \u2014 AI-Powered Fire Protection Engineering',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FireSafe.AI \u2014 AI Tools for Fire Protection Engineering',
+    description:
+      'AI-powered fire protection engineering tools built on NFPA, IBC, and IFC standards.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
