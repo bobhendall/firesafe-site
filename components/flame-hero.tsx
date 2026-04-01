@@ -6,12 +6,14 @@ export function FlameHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const sootRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number>(0)
 
   const animate = useCallback(() => {
     const canvas = canvasRef.current
     const sootEl = sootRef.current
-    if (!canvas || !sootEl) return
+    const textEl = textRef.current
+    if (!canvas || !sootEl || !textEl) return
 
     const ctx = canvas.getContext('2d')
     if (!ctx) return
@@ -19,6 +21,7 @@ export function FlameHero() {
     // Non-null assertions after guard
     const c = ctx
     const soot = sootEl
+    const textContainer = textEl
 
     const dpr = window.devicePixelRatio || 1
     const W = canvas.width / dpr
@@ -218,6 +221,16 @@ export function FlameHero() {
       const sootLevel = getSootPhase()
       soot.style.opacity = String(sootLevel * 0.55)
 
+      // Adapt text colors for visibility during soot darkening
+      const headR = Math.round(28 + sootLevel * 217)
+      const headG = Math.round(25 + sootLevel * 205)
+      const headB = Math.round(23 + sootLevel * 197)
+      const subR = Math.round(113 + sootLevel * 122)
+      const subG = Math.round(113 + sootLevel * 112)
+      const subB = Math.round(122 + sootLevel * 98)
+      textContainer.style.setProperty('--hero-head', `rgb(${headR},${headG},${headB})`)
+      textContainer.style.setProperty('--hero-sub', `rgb(${subR},${subG},${subB})`)
+
       // Warm radial glow (intensifies with soot)
       lightPhase += 0.01
       const boost = 1 + sootLevel * 4
@@ -288,7 +301,7 @@ export function FlameHero() {
       />
 
       {/* Hero content */}
-      <section className="relative z-[3] mx-auto max-w-2xl px-6 pb-18 pt-24 text-center">
+      <section ref={textRef} className="relative z-[3] mx-auto max-w-2xl px-6 pb-18 pt-24 text-center" style={{ '--hero-head': 'rgb(28,25,23)', '--hero-sub': 'rgb(113,113,122)' } as React.CSSProperties}>
         {/* Animated flame SVG */}
         <div className="relative mb-5 inline-block">
           <svg
@@ -346,12 +359,12 @@ export function FlameHero() {
           </svg>
         </div>
 
-        <h1 className="text-5xl font-extrabold tracking-tight text-foreground sm:text-[3.2rem] leading-[1.08]">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[3.2rem] leading-[1.08] transition-colors duration-300" style={{ color: 'var(--hero-head)' }}>
           Code to compliance,<br />
           <span className="bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">faster.</span>
         </h1>
 
-        <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-[1.05rem]">
+        <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed sm:text-[1.05rem] transition-colors duration-300" style={{ color: 'var(--hero-sub)' }}>
           FDS modeling, sprinkler design, egress analysis, hazmat compliance, code search.
           All grounded in NFPA, IBC, and IFC — not LLM hallucinations.
           Built for engineers who stamp plans.
@@ -362,19 +375,19 @@ export function FlameHero() {
             href={process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'}
             className="inline-flex items-center gap-2 rounded-[9px] border border-black/12 bg-primary px-7 py-3 text-[15px] font-semibold text-white shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all hover:-translate-y-0.5 hover:bg-[#c04a09]"
           >
-            Start free →
+            Start free \u2192
           </a>
           <a
             href={process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'}
-            className="inline-flex items-center rounded-[9px] border border-border bg-card px-7 py-3 text-[15px] font-medium text-foreground shadow-sm transition-all hover:border-muted-foreground/30 hover:bg-muted"
+            className="inline-flex items-center rounded-[9px] border border-border bg-card/80 backdrop-blur-sm px-7 py-3 text-[15px] font-medium shadow-sm transition-all hover:border-muted-foreground/30 hover:bg-muted"
+            style={{ color: 'var(--hero-head)' }}
           >
             Sign in
           </a>
         </div>
 
-        <p className="mt-3.5 text-xs text-muted-foreground/70">Free plan — no credit card required</p>
+        <p className="mt-3.5 text-xs transition-colors duration-300" style={{ color: 'var(--hero-sub)', opacity: 0.7 }}>Free plan \u2014 no credit card required</p>
       </section>
     </div>
   )
 }
-
