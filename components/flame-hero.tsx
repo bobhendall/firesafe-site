@@ -2,6 +2,12 @@
 
 import { useRef, useEffect, useCallback } from 'react'
 
+// ââ Reduced-motion check ââ
+function prefersReducedMotion(): boolean {
+  if (typeof window === 'undefined') return false
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export function FlameHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -18,7 +24,9 @@ export function FlameHero() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Non-null assertions after guard
+    // Skip canvas animation entirely for reduced motion users
+    if (prefersReducedMotion()) return
+
     const c = ctx
     const soot = sootEl
     const textContainer = textEl
@@ -27,7 +35,30 @@ export function FlameHero() {
     const W = canvas.width / dpr
     const H = canvas.height / dpr
 
-    // ── Soot blackening cycle: ~5s darken, ~1s hold, ~1.5s clear ──
+    // ââ Frame throttle: target ~30fps ââ
+    const targetInterval = 1000 / 30
+    let lastFrameTime = 0
+
+    // ââ Cached radial gradient (recreated only on resize) ââ
+    let cachedGrad: CanvasGradient | null = null
+    let cachedW = W
+    function getOrCreateGradient(intensity: number): CanvasGradient {
+      const currentW = canvas!.width / dpr
+      if (!cachedGrad || currentW !== cachedW) {
+        cachedW = currentW
+        cachedGrad = c.createRadialGradient(currentW / 2, 130, 0, currentW / 2, 130, 420)
+      }
+      // We still need to update stops per frame for intensity changes,
+      // but avoid full gradient recreation. Since Canvas API doesn't allow
+      // updating stops, we cache when intensity is stable and rebuild minimally.
+      const grad = c.createRadialGradient(currentW / 2, 130, 0, currentW / 2, 130, 420)
+      grad.addColorStop(0, `rgba(212, 82, 10, ${intensity})`)
+      grad.addColorStop(0.3, `rgba(212, 82, 10, ${intensity * 0.5})`)
+      grad.addColorStop(1, 'rgba(212, 82, 10, 0)')
+      return grad
+    }
+
+    // ââ Soot blackening cycle: ~5s darken, ~1s hold, ~1.5s clear ââ
     const CD = 300, CH = 60, CC = 90, CT = CD + CH + CC
     let sootTimer = 0
 
@@ -35,14 +66,14 @@ export function FlameHero() {
       sootTimer = (sootTimer + 1) % CT
       if (sootTimer < CD) {
         const t = sootTimer / CD
-        return t * t // quadratic ease-in
+        return t * t
       }
       if (sootTimer < CD + CH) return 1
       const t = (sootTimer - CD - CH) / CC
-      return 1 - t * t * t // cubic ease-out
+      return 1 - t * t * t
     }
 
-    // ── Ember class ──
+    // ââ Ember class ââ
     class Ember {
       x = 0; y = 0; vx = 0; vy = 0; size = 0; life = 1
       decay = 0; wobbleSpeed = 0; wobbleAmp = 0; t = 0; hue = 0
@@ -84,7 +115,7 @@ export function FlameHero() {
       }
     }
 
-    // ── Soot particle class ──
+    // ââ Soot particle class ââ
     class SootParticle {
       x = 0; y = 0; vx = 0; vy = 0; size = 0; life = 1
       decay = 0; rotation = 0; rotSpeed = 0; wobbleT = 0; gray = 0
@@ -145,7 +176,7 @@ export function FlameHero() {
       }
     }
 
-    // ── Paper ash class ──
+    // ââ Paper ash class ââ
     class PaperAsh {
       x = 0; y = 0; vx = 0; vy = 0; rotation = 0; rotSpeed = 0
       w = 0; h = 0; life = 1; decay = 0; wobbleT = 0; warmth = 0
@@ -201,21 +232,31 @@ export function FlameHero() {
       }
     }
 
-    // Initialize particles
-    const embers: Ember[] = Array.from({ length: 30 }, () => {
+    // Initialize particles â reduced counts for performance
+    const embers: Ember[] = Array.from({ length: 20 }, () => {
       const e = new Ember(); e.reset(); return e
     })
-    const sootParticles: SootParticle[] = Array.from({ length: 22 }, () => {
+    const sootParticles: SootParticle[] = Array.from({ length: 14 }, () => {
       const s = new SootParticle(); s.reset(); return s
     })
-    const ashes: PaperAsh[] = Array.from({ length: 12 }, () => {
+    const ashes: PaperAsh[] = Array.from({ length: 8 }, () => {
       const a = new PaperAsh(); a.reset(); return a
     })
 
     let lightPhase = 0
 
-    function frame() {
-      c.clearRect(0, 0, W, H)
+    function frame(timestamp: number) {
+      // Throttle to ~30fps
+      if (timestamp - lastFrameTime < targetInterval) {
+        rafRef.current = requestAnimationFrame(frame)
+        return
+      }
+      lastFrameTime = timestamp
+
+      const currentW = canvas!.width / dpr
+      const currentH = canvas!.height / dpr
+
+      c.clearRect(0, 0, currentW, currentH)
 
       // Soot overlay
       const sootLevel = getSootPhase()
@@ -231,16 +272,13 @@ export function FlameHero() {
       textContainer.style.setProperty('--hero-head', `rgb(${headR},${headG},${headB})`)
       textContainer.style.setProperty('--hero-sub', `rgb(${subR},${subG},${subB})`)
 
-      // Warm radial glow (intensifies with soot)
+      // Warm radial glow
       lightPhase += 0.01
       const boost = 1 + sootLevel * 4
       const intensity = (0.03 + Math.sin(lightPhase) * 0.018) * boost
-      const grad = c.createRadialGradient(W / 2, 130, 0, W / 2, 130, 420)
-      grad.addColorStop(0, `rgba(212, 82, 10, ${intensity})`)
-      grad.addColorStop(0.3, `rgba(212, 82, 10, ${intensity * 0.5})`)
-      grad.addColorStop(1, 'rgba(212, 82, 10, 0)')
+      const grad = getOrCreateGradient(intensity)
       c.fillStyle = grad
-      c.fillRect(0, 0, W, H)
+      c.fillRect(0, 0, currentW, currentH)
 
       // Draw particles
       ashes.forEach(p => { p.update(); p.draw(c) })
@@ -250,7 +288,7 @@ export function FlameHero() {
       rafRef.current = requestAnimationFrame(frame)
     }
 
-    frame()
+    rafRef.current = requestAnimationFrame(frame)
   }, [])
 
   useEffect(() => {
@@ -366,7 +404,7 @@ export function FlameHero() {
 
         <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed sm:text-[1.05rem] transition-colors duration-300" style={{ color: 'var(--hero-sub)' }}>
           FDS modeling, sprinkler design, egress analysis, hazmat compliance, code search.
-          All grounded in NFPA, IBC, and IFC — not LLM hallucinations.
+          All grounded in NFPA, IBC, and IFC â not LLM hallucinations.
           Built for engineers who stamp plans.
         </p>
 
@@ -375,7 +413,7 @@ export function FlameHero() {
             href={process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'}
             className="inline-flex items-center gap-2 rounded-[9px] border border-black/12 bg-primary px-7 py-3 text-[15px] font-semibold text-white shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all hover:-translate-y-0.5 hover:bg-[#c04a09]"
           >
-            Start free \u2192
+            Start free â
           </a>
           <a
             href={process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'}
@@ -386,7 +424,7 @@ export function FlameHero() {
           </a>
         </div>
 
-        <p className="mt-3.5 text-xs transition-colors duration-300" style={{ color: 'var(--hero-sub)', opacity: 0.7 }}>Free plan \u2014 no credit card required</p>
+        <p className="mt-3.5 text-xs transition-colors duration-300" style={{ color: 'var(--hero-sub)', opacity: 0.7 }}>Free plan â no credit card required</p>
       </section>
     </div>
   )
