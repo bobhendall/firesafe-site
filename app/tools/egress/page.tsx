@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { DoorOpen, ArrowRight, Clock, Users, Route, Calculator, BarChart3, CheckCircle2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
+import { DoorOpen, Clock, Users, Route, Calculator, BarChart3, CheckCircle2 } from 'lucide-react'
+import { ToolPageLayout } from '@/components/tool-page-layout'
 
 export const metadata: Metadata = {
   title: 'Egress Analysis & ASET/RSET Calculator | FireSafe.AI',
@@ -54,6 +52,42 @@ const features = [
   },
 ]
 
+const overviewParagraphs = [
+  'Egress analysis is where fire protection engineering meets life safety code compliance. Every occupied building requires a properly designed egress system -- means of egress that allow occupants to travel from any point in the building to a public way within the allowable travel distance, through exits of sufficient width to handle the calculated occupant load, within a time frame that maintains tenable conditions along the entire path.',
+  'FireSafe.AI brings these calculations together in one place. Define your building&apos;s floor areas by occupancy use, specify exit locations and widths, and set corridor dimensions. The platform calculates occupant loads per IBC Table 1004.5, verifies travel distances per IBC 1017.2, checks exit capacity per IBC 1005.1, and models evacuation time using SFPE Handbook hydraulic flow methods. For performance-based projects, it calculates RSET and compares against ASET values derived from your smoke control or FDS analysis.',
+  'The result is a defensible egress analysis that traces every assumption back to a code section or published engineering reference. When the AHJ asks why you believe occupants can evacuate before conditions become untenable, you have the data to show your work.',
+]
+
+const standards = [
+  'IBC Ch. 10 -- Means of Egress',
+  'IBC Table 1004.5 -- Occupant Load Factors',
+  'IBC Table 1005.1 -- Egress Width Per Occupant',
+  'IBC Table 1017.2 -- Exit Access Travel Distance',
+  'NFPA 101 -- Life Safety Code',
+  'SFPE Handbook, Ch. 59 -- Human Behavior in Fire',
+  'SFPE Handbook, Ch. 64 -- Evacuation Modeling',
+  'PD 7974-6 -- Human Factors in Fire Safety',
+]
+
+const useCases = [
+  {
+    label: 'Assembly occupancy egress',
+    text: 'Calculate occupant loads for concert halls, convention centers, and stadiums. Verify that egress widths accommodate concentrated occupant loads and that travel distances comply with IBC provisions for assembly uses.',
+  },
+  {
+    label: 'High-rise evacuation timing',
+    text: 'Model stairwell evacuation for buildings over 75 feet. Evaluate total evacuation time vs. phased evacuation strategies, accounting for stair merge ratios, door queuing, and counterflow from fire department operations.',
+  },
+  {
+    label: 'Mixed-use building analysis',
+    text: 'Handle buildings with multiple occupancy types on different floors. Apply correct occupant load factors for each use, aggregate exit capacity requirements, and verify that shared egress components serve the combined occupant load.',
+  },
+  {
+    label: 'Performance-based egress design',
+    text: 'For projects pursuing code alternatives under IBC 104.11, develop a complete ASET/RSET analysis that demonstrates equivalent safety. Link fire modeling results to tenability criteria and evacuation timing to support the alternative design request.',
+  },
+]
+
 const faqs = [
   {
     question: 'What is the ASET/RSET framework?',
@@ -84,113 +118,20 @@ const faqs = [
 
 export default function EgressPage() {
   return (
-    <>
-      <section className="flex flex-col items-center px-6 pt-20 pb-16 text-center">
-        <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
-          <DoorOpen className="h-7 w-7 text-primary" />
-        </div>
-        <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-          Egress Analysis & ASET/RSET Calculator
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Perform complete egress analyses with occupant load calculations, travel distance verification, exit capacity checks, and ASET/RSET evaluation. Integrated with smoke control and FDS outputs for seamless performance-based design.
-        </p>
-        <div className="mt-8">
-          <Button size="lg" asChild>
-            <a href={APP_URL} className="gap-2">Start free <ArrowRight className="h-4 w-4" /></a>
-          </Button>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-16">
-        <h2 className="mb-4 text-2xl font-semibold">Egress Design Grounded in Code and Engineering</h2>
-        <div className="space-y-4 text-muted-foreground leading-relaxed">
-          <p>
-            Egress analysis is where fire protection engineering meets life safety code compliance. Every occupied building requires a properly designed egress system -- means of egress that allow occupants to travel from any point in the building to a public way within the allowable travel distance, through exits of sufficient width to handle the calculated occupant load, within a time frame that maintains tenable conditions along the entire path.
-          </p>
-          <p>
-            FireSafe.AI brings these calculations together in one place. Define your building&apos;s floor areas by occupancy use, specify exit locations and widths, and set corridor dimensions. The platform calculates occupant loads per IBC Table 1004.5, verifies travel distances per IBC 1017.2, checks exit capacity per IBC 1005.1, and models evacuation time using SFPE Handbook hydraulic flow methods. For performance-based projects, it calculates RSET and compares against ASET values derived from your smoke control or FDS analysis.
-          </p>
-          <p>
-            The result is a defensible egress analysis that traces every assumption back to a code section or published engineering reference. When the AHJ asks why you believe occupants can evacuate before conditions become untenable, you have the data to show your work.
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-5xl px-6 pb-16">
-        <h2 className="mb-8 text-center text-2xl font-semibold">Key Capabilities</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => {
-            const Icon = feature.icon
-            return (
-              <div key={feature.title} className="rounded-xl border border-border bg-card p-6">
-                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/20">
-                  <Icon className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="mb-2 font-semibold text-foreground">{feature.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
-              </div>
-            )
-          })}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-16">
-        <h2 className="mb-4 text-2xl font-semibold">Applicable Standards & References</h2>
-        <p className="mb-6 text-muted-foreground">
-          Egress analysis in FireSafe.AI references the following codes and engineering resources:
-        </p>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {[
-            'IBC Ch. 10 -- Means of Egress',
-            'IBC Table 1004.5 -- Occupant Load Factors',
-            'IBC Table 1005.1 -- Egress Width Per Occupant',
-            'IBC Table 1017.2 -- Exit Access Travel Distance',
-            'NFPA 101 -- Life Safety Code',
-            'SFPE Handbook, Ch. 59 -- Human Behavior in Fire',
-            'SFPE Handbook, Ch. 64 -- Evacuation Modeling',
-            'PD 7974-6 -- Human Factors in Fire Safety',
-          ].map((standard) => (
-            <div key={standard} className="rounded-lg border border-border bg-card/50 px-4 py-3 text-sm text-muted-foreground">
-              {standard}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-16">
-        <h2 className="mb-4 text-2xl font-semibold">Common Use Cases</h2>
-        <div className="space-y-4 text-muted-foreground leading-relaxed">
-          <p><strong className="text-foreground">Assembly occupancy egress:</strong> Calculate occupant loads for concert halls, convention centers, and stadiums. Verify that egress widths accommodate concentrated occupant loads and that travel distances comply with IBC provisions for assembly uses.</p>
-          <p><strong className="text-foreground">High-rise evacuation timing:</strong> Model stairwell evacuation for buildings over 75 feet. Evaluate total evacuation time vs. phased evacuation strategies, accounting for stair merge ratios, door queuing, and counterflow from fire department operations.</p>
-          <p><strong className="text-foreground">Mixed-use building analysis:</strong> Handle buildings with multiple occupancy types on different floors. Apply correct occupant load factors for each use, aggregate exit capacity requirements, and verify that shared egress components serve the combined occupant load.</p>
-          <p><strong className="text-foreground">Performance-based egress design:</strong> For projects pursuing code alternatives under IBC 104.11, develop a complete ASET/RSET analysis that demonstrates equivalent safety. Link fire modeling results to tenability criteria and evacuation timing to support the alternative design request.</p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-3xl px-6 pb-20">
-        <h2 className="mb-8 text-center text-2xl font-semibold">Frequently Asked Questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq) => (
-            <div key={faq.question} className="rounded-xl border border-border bg-card p-6">
-              <h3 className="mb-2 font-semibold text-foreground">{faq.question}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="flex flex-col items-center border-t border-border px-6 py-16 text-center">
-        <h2 className="text-2xl font-semibold">Build defensible egress analyses faster</h2>
-        <p className="mt-3 max-w-lg text-muted-foreground">
-          From occupant load to ASET/RSET evaluation. Every calculation traced to a code section.
-        </p>
-        <div className="mt-6">
-          <Button size="lg" asChild>
-            <a href={APP_URL} className="gap-2">Get started free <ArrowRight className="h-4 w-4" /></a>
-          </Button>
-        </div>
-      </section>
-    </>
+    <ToolPageLayout
+      icon={DoorOpen}
+      title="Egress Analysis & ASET/RSET Calculator"
+      subtitle="Perform complete egress analyses with occupant load calculations, travel distance verification, exit capacity checks, and ASET/RSET evaluation. Integrated with smoke control and FDS outputs for seamless performance-based design."
+      overviewTitle="Egress Design Grounded in Code and Engineering"
+      overviewParagraphs={overviewParagraphs}
+      features={features}
+      standardsTitle="Applicable Standards & References"
+      standardsIntro="Egress analysis in FireSafe.AI references the following codes and engineering resources:"
+      standards={standards}
+      useCases={useCases}
+      faqs={faqs}
+      ctaHeading="Build defensible egress analyses faster"
+      ctaSubtitle="From occupant load to ASET/RSET evaluation. Every calculation traced to a code section."
+    />
   )
 }
