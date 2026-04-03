@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { NavDropdown } from '@/components/nav-dropdown'
+import { toolNavLinks } from '@/lib/tools'
 import './globals.css'
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -13,11 +14,13 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
+  display: 'swap',
 })
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -69,19 +72,6 @@ export const metadata: Metadata = {
   },
 }
 
-const toolLinks = [
-  { name: 'FDS/CFD Modeling', href: '/tools/fds-cfd' },
-  { name: 'Smoke Control', href: '/tools/smoke-control' },
-  { name: 'Egress Analysis', href: '/tools/egress' },
-  { name: 'CodeCompare', href: APP_URL },
-  { name: 'Code Consulting', href: '/tools/code-consulting' },
-  { name: 'Fire Detection', href: '/tools/fire-detection' },
-  { name: 'Suppression Systems', href: '/tools/suppression' },
-  { name: 'HazMat & Risk', href: '/tools/hazmat-risk' },
-  { name: 'StoragePro', href: '/tools/storagepro' },
-  { name: 'PE Tutor', href: '/tools/pe-tutor' },
-]
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -101,7 +91,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="min-h-screen bg-background">
-          <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/92 backdrop-blur-xl backdrop-saturate-[1.4]">
+          <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2.5">
@@ -117,7 +107,7 @@ export default function RootLayout({
 
               {/* Center nav links */}
               <div className="hidden md:flex items-center gap-1">
-                <NavDropdown label="Tools" items={toolLinks} />
+                <NavDropdown label="Tools" items={toolNavLinks} />
                 <Link href="/about" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted">
                   About
                 </Link>
