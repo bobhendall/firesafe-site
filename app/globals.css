@@ -30,55 +30,55 @@
 }
 
 /*
- * FireSafe.AI — Light & Clean Design System
+ * FireSafe.AI â Light & Clean Design System
  *
  * Professional light theme inspired by Stripe/Linear.
  * Clean whites, subtle grays, with a refined orange accent.
  *
  * Palette:
- *   Background  — white                    HSL   0  0% 100%
- *   Foreground  — near-black               HSL 220 14%  10%
- *   Primary     — refined orange            HSL  24 95%  53%
- *   Accent      — soft orange              HSL  25 90%  95%
- *   Destructive — signal red               HSL   0 72%  51%
+ *   Background  â white                    HSL   0  0% 100%
+ *   Foreground  â near-black               HSL 220 14%  10%
+ *   Primary     â refined orange            HSL  24 95%  53%
+ *   Accent      â soft orange              HSL  25 90%  95%
+ *   Destructive â signal red               HSL   0 72%  51%
  */
 :root {
-  /* ─── Core (warm white) ────────────────────────────── */
+  /* âââ Core (warm white) ââââââââââââââââââââââââââââââ */
   --background:         30  50%  99%;
   --foreground:         24  30%  10%;
 
-  /* ─── Card / Popover ────────────────────────────────── */
+  /* âââ Card / Popover ââââââââââââââââââââââââââââââââââ */
   --card:                0   0% 100%;
   --card-foreground:    24  30%  10%;
   --popover:             0   0% 100%;
   --popover-foreground: 24  30%  10%;
 
-  /* ─── Brand / Action (deeper orange for contrast) ──── */
+  /* âââ Brand / Action (deeper orange for contrast) ââââ */
   --primary:            22  90%  44%;
   --primary-foreground:  0   0% 100%;
   --secondary:          30  20%  96%;
   --secondary-foreground:24 20%  30%;
 
-  /* ─── Muted (warm gray) ────────────────────────────── */
+  /* âââ Muted (warm gray) ââââââââââââââââââââââââââââââ */
   --muted:              30  15%  96%;
   --muted-foreground:   24  10%  46%;
 
-  /* ─── Accent (soft orange tint) ────────────────────── */
+  /* âââ Accent (soft orange tint) ââââââââââââââââââââââ */
   --accent:             25  90%  95%;
   --accent-foreground:  22  90%  38%;
 
-  /* ─── Danger ─────────────────────────────────────────── */
+  /* âââ Danger âââââââââââââââââââââââââââââââââââââââââââ */
   --destructive:         0  72%  51%;
   --destructive-foreground: 0  0% 100%;
 
-  /* ─── Structural (warm borders) ────────────────────── */
+  /* âââ Structural (warm borders) ââââââââââââââââââââââ */
   --border:             30  15%  90%;
   --input:              30  15%  90%;
   --ring:               22  90%  44%;
   --radius:             0.5rem;
 }
 
-/* ─── Flame animations ────────────────────────────────── */
+/* âââ Flame animations ââââââââââââââââââââââââââââââââââ */
 @keyframes flameBreath {
   0%, 100% { transform: scale(1) rotate(0deg); }
   20% { transform: scale(1.08) rotate(-1.2deg); }
@@ -116,7 +116,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Scrollbar styling — subtle amber tint */
+  /* Scrollbar styling â subtle amber tint */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -133,5 +133,16 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--muted-foreground));
+  }
+}
+
+/* âââ Reduced motion: disable all non-essential animations âââ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
