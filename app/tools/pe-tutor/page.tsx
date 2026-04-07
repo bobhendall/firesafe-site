@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { GraduationCap, ArrowRight, BookOpen, Brain, ClipboardList, Target, Flame, CheckCircle2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
+import { GraduationCap, BookOpen, Brain, ClipboardList, Target, Flame, CheckCircle2 } from 'lucide-react'
+import { ToolPageLayout } from '@/components/tool-page-layout'
 
 export const metadata: Metadata = {
   title: 'PE Fire Protection Exam Prep & NICET Study Tool | FireSafe.AI',
@@ -33,66 +31,51 @@ const examDomains = [
   { domain: 'Hazmat & Risk', weight: '10%', topics: 'Group H occupancy, MAQ, NFPA 30/55, fire risk assessment' },
 ]
 
+const standards = [
+  'NFPA 13 -- Sprinkler Systems',
+  'NFPA 72 -- Fire Alarm and Signaling',
+  'NFPA 101 -- Life Safety Code',
+  'NFPA 92 -- Smoke Control Systems',
+  'NFPA 14, 20, 25 -- Standpipe, Pumps, ITM',
+  'IBC -- International Building Code',
+  'IFC -- International Fire Code',
+  'SFPE Handbook of Fire Protection Engineering',
+]
+
 export default function PETutorPage() {
   return (
-    <>
-      <section className="flex flex-col items-center px-6 pt-20 pb-16 text-center">
-        <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20"><GraduationCap className="h-7 w-7 text-primary" /></div>
-        <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">PE Fire Protection Exam Prep</h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">AI-powered study tool for PE Fire Protection and NICET certification exams. Practice problems, concept explanations, quizzes, and an AI tutor that knows fire protection engineering inside and out.</p>
-        <div className="mt-8"><Button size="lg" asChild><a href={APP_URL} className="gap-2">Start studying <ArrowRight className="h-4 w-4" /></a></Button></div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-16">
-        <h2 className="mb-4 text-2xl font-semibold">Study Smarter, Not Harder</h2>
-        <div className="space-y-4 text-muted-foreground leading-relaxed">
-          <p>The PE Fire Protection exam covers a wide range of topics -- from fire dynamics and sprinkler hydraulics to egress analysis and code interpretation. Traditional study methods rely on reading standards cover-to-cover and working through limited problem sets. PE Tutor generates unlimited practice problems tailored to your weak areas.</p>
-          <p>Each practice problem is generated at PE exam difficulty with realistic given data, code references, and step-by-step solutions. The AI tutor can explain any concept in depth, generate quizzes for quick knowledge checks, and provide exam strategies based on the weighted domain breakdown.</p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-5xl px-6 pb-16">
-        <h2 className="mb-8 text-center text-2xl font-semibold">Key Capabilities</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => { const Icon = feature.icon; return (
-            <div key={feature.title} className="rounded-xl border border-border bg-card p-6">
-              <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/20"><Icon className="h-5 w-5 text-primary" /></div>
-              <h3 className="mb-2 font-semibold text-foreground">{feature.title}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
-            </div>
-          )})}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-16">
-        <h2 className="mb-6 text-2xl font-semibold">PE Exam Domain Breakdown</h2>
-        <div className="space-y-3">
-          {examDomains.map((d) => (
-            <div key={d.domain} className="rounded-lg border border-border bg-card p-4">
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-semibold text-foreground">{d.domain}</span>
-                <span className="text-sm font-mono text-primary">{d.weight}</span>
+    <ToolPageLayout
+      icon={GraduationCap}
+      title="PE Fire Protection Exam Prep"
+      subtitle="AI-powered study tool for PE Fire Protection and NICET certification exams. Practice problems, concept explanations, quizzes, and an AI tutor that knows fire protection engineering inside and out."
+      ctaText="Start studying"
+      overviewTitle="Study Smarter, Not Harder"
+      overviewParagraphs={[
+        'The PE Fire Protection exam covers a wide range of topics -- from fire dynamics and sprinkler hydraulics to egress analysis and code interpretation. Traditional study methods rely on reading standards cover-to-cover and working through limited problem sets. PE Tutor generates unlimited practice problems tailored to your weak areas.',
+        'Each practice problem is generated at PE exam difficulty with realistic given data, code references, and step-by-step solutions. The AI tutor can explain any concept in depth, generate quizzes for quick knowledge checks, and provide exam strategies based on the weighted domain breakdown.',
+      ]}
+      features={features}
+      standardsTitle="References Covered"
+      standards={standards}
+      ctaHeading="Pass the PE Fire Protection exam"
+      ctaSubtitle="Unlimited practice problems, expert explanations, and an AI tutor that knows every code section."
+      ctaButtonText="Start studying free"
+      children={
+        <section className="mx-auto max-w-4xl px-6 pb-16">
+          <h2 className="mb-6 text-2xl font-semibold">PE Exam Domain Breakdown</h2>
+          <div className="space-y-3">
+            {examDomains.map((d) => (
+              <div key={d.domain} className="rounded-lg border border-border bg-card p-4">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-foreground">{d.domain}</span>
+                  <span className="text-sm font-mono text-primary">{d.weight}</span>
+                </div>
+                <p className="text-sm text-muted-foreground">{d.topics}</p>
               </div>
-              <p className="text-sm text-muted-foreground">{d.topics}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-16">
-        <h2 className="mb-4 text-2xl font-semibold">References Covered</h2>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {['NFPA 13 -- Sprinkler Systems','NFPA 72 -- Fire Alarm and Signaling','NFPA 101 -- Life Safety Code','NFPA 92 -- Smoke Control Systems','NFPA 14, 20, 25 -- Standpipe, Pumps, ITM','IBC -- International Building Code','IFC -- International Fire Code','SFPE Handbook of Fire Protection Engineering'].map((ref) => (
-            <div key={ref} className="rounded-lg border border-border bg-card/50 px-4 py-3 text-sm text-muted-foreground">{ref}</div>
-          ))}
-        </div>
-      </section>
-
-      <section className="flex flex-col items-center border-t border-border px-6 py-16 text-center">
-        <h2 className="text-2xl font-semibold">Pass the PE Fire Protection exam</h2>
-        <p className="mt-3 max-w-lg text-muted-foreground">Unlimited practice problems, expert explanations, and an AI tutor that knows every code section.</p>
-        <div className="mt-6"><Button size="lg" asChild><a href={APP_URL} className="gap-2">Start studying free <ArrowRight className="h-4 w-4" /></a></Button></div>
-      </section>
-    </>
+            ))}
+          </div>
+        </section>
+      }
+    />
   )
 }
