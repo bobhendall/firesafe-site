@@ -1,15 +1,13 @@
 import type { Metadata } from 'next'
-import { Warehouse, ArrowRight, Layers, Package, Ruler, Droplets, AlertTriangle, CheckCircle2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
+import { Warehouse, Layers, Package, Ruler, Droplets, AlertTriangle, CheckCircle2 } from 'lucide-react'
+import { ToolPageLayout } from '@/components/tool-page-layout'
 
 export const metadata: Metadata = {
-  title: 'StoragePro — NFPA 13 Storage Sprinkler Design | FireSafe.AI',
+  title: 'StoragePro â NFPA 13 Storage Sprinkler Design | FireSafe.AI',
   description:
     'AI-powered storage fire protection analysis with commodity classification, rack sprinkler design, ESFR eligibility, flue space rules, and NFPA 13 compliance for warehouses and distribution centers.',
   openGraph: {
-    title: 'StoragePro — NFPA 13 Storage Sprinkler Design | FireSafe.AI',
+    title: 'StoragePro â NFPA 13 Storage Sprinkler Design | FireSafe.AI',
     description:
       'AI-powered storage fire protection analysis with commodity classification, rack sprinkler design, ESFR eligibility, flue space rules, and NFPA 13 compliance.',
   },
@@ -31,63 +29,34 @@ const faqs = [
   { question: 'What flue space requirements apply to my storage?', answer: 'NFPA 13 requires minimum 3-inch transverse flue spaces in all rack storage. Longitudinal flue spaces of 6 inches are required for Group A Plastics and Class IV commodities in double-row and multi-row racks. These flue spaces must be maintained from floor to ceiling to allow sprinkler water penetration into the rack structure. FireSafe.AI checks your configuration against these requirements.' },
 ]
 
+const standards = [
+  'NFPA 13 Chapters 13-20 -- Storage',
+  'NFPA 13 Chapter 5 -- Commodity Classification',
+  'IFC Chapter 32 -- High-Piled Storage',
+  'FM Global DS 8-9 -- Storage of Class 1-4 Commodities',
+  'FM Global DS 8-1 -- Commodity Classification',
+  'FM Global DS 8-24 -- Idle Pallet Storage',
+]
+
 export default function StorageProPage() {
   return (
-    <>
-      <section className="flex flex-col items-center px-6 pt-20 pb-16 text-center">
-        <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20"><Warehouse className="h-7 w-7 text-primary" /></div>
-        <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">Storage Fire Protection Design</h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">Design sprinkler protection for warehouses and distribution centers. Commodity classification, rack analysis, ESFR eligibility, in-rack sprinkler layout, and flue space verification -- all per NFPA 13.</p>
-        <div className="mt-8"><Button size="lg" asChild><a href={APP_URL} className="gap-2">Start free <ArrowRight className="h-4 w-4" /></a></Button></div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-16">
-        <h2 className="mb-4 text-2xl font-semibold">Why Storage Occupancies Need Special Attention</h2>
-        <div className="space-y-4 text-muted-foreground leading-relaxed">
-          <p>Storage occupancies represent some of the most challenging fire protection designs. The combination of high storage heights, densely packed combustible materials, and narrow aisles creates conditions where fires can grow rapidly and overwhelm standard sprinkler systems. NFPA 13 dedicates eight chapters (13-20) to storage protection -- more than any other occupancy type.</p>
-          <p>StoragePro handles the complexity. Input your commodity class, storage arrangement, heights, and ceiling configuration. The platform determines the correct NFPA 13 chapter, calculates ceiling sprinkler design criteria, identifies in-rack sprinkler requirements, checks flue space compliance, evaluates ESFR eligibility, and calculates total water demand with hose stream allowances.</p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-5xl px-6 pb-16">
-        <h2 className="mb-8 text-center text-2xl font-semibold">Key Capabilities</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => { const Icon = feature.icon; return (
-            <div key={feature.title} className="rounded-xl border border-border bg-card p-6">
-              <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/20"><Icon className="h-5 w-5 text-primary" /></div>
-              <h3 className="mb-2 font-semibold text-foreground">{feature.title}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
-            </div>
-          )})}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-16">
-        <h2 className="mb-4 text-2xl font-semibold">Applicable Standards</h2>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {['NFPA 13 Chapters 13-20 -- Storage','NFPA 13 Chapter 5 -- Commodity Classification','IFC Chapter 32 -- High-Piled Storage','FM Global DS 8-9 -- Storage of Class 1-4 Commodities','FM Global DS 8-1 -- Commodity Classification','FM Global DS 8-24 -- Idle Pallet Storage'].map((standard) => (
-            <div key={standard} className="rounded-lg border border-border bg-card/50 px-4 py-3 text-sm text-muted-foreground">{standard}</div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-3xl px-6 pb-20">
-        <h2 className="mb-8 text-center text-2xl font-semibold">Frequently Asked Questions</h2>
-        <div className="space-y-6">
-          {faqs.map((faq) => (
-            <div key={faq.question} className="rounded-xl border border-border bg-card p-6">
-              <h3 className="mb-2 font-semibold text-foreground">{faq.question}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="flex flex-col items-center border-t border-border px-6 py-16 text-center">
-        <h2 className="text-2xl font-semibold">Design storage sprinkler systems with confidence</h2>
-        <p className="mt-3 max-w-lg text-muted-foreground">From commodity classification to water demand. Every design parameter traced to NFPA 13.</p>
-        <div className="mt-6"><Button size="lg" asChild><a href={APP_URL} className="gap-2">Get started free <ArrowRight className="h-4 w-4" /></a></Button></div>
-      </section>
-    </>
+    <ToolPageLayout
+      icon={Warehouse}
+      title="Storage Fire Protection Design"
+      subtitle="Design sprinkler protection for warehouses and distribution centers. Commodity classification, rack analysis, ESFR eligibility, in-rack sprinkler layout, and flue space verification -- all per NFPA 13."
+      ctaText="Start free"
+      overviewTitle="Why Storage Occupancies Need Special Attention"
+      overviewParagraphs={[
+        'Storage occupancies represent some of the most challenging fire protection designs. The combination of high storage heights, densely packed combustible materials, and narrow aisles creates conditions where fires can grow rapidly and overwhelm standard sprinkler systems. NFPA 13 dedicates eight chapters (13-20) to storage protection -- more than any other occupancy type.',
+        'StoragePro handles the complexity. Input your commodity class, storage arrangement, heights, and ceiling configuration. The platform determines the correct NFPA 13 chapter, calculates ceiling sprinkler design criteria, identifies in-rack sprinkler requirements, checks flue space compliance, evaluates ESFR eligibility, and calculates total water demand with hose stream allowances.',
+      ]}
+      features={features}
+      standardsTitle="Applicable Standards"
+      standards={standards}
+      faqs={faqs}
+      ctaHeading="Design storage sprinkler systems with confidence"
+      ctaSubtitle="From commodity classification to water demand. Every design parameter traced to NFPA 13."
+      ctaButtonText="Get started free"
+    />
   )
 }
