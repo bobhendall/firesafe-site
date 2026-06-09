@@ -119,6 +119,7 @@ const useCases = [
 export default function SmokeControlPage() {
   return (
     <ToolPageLayout
+      href="/tools/smoke-control"
       icon={Wind}
       title="Smoke Control Analysis Software"
       subtitle="Design and validate smoke control systems per NFPA 92. From atrium smoke filling calculations to stairwell pressurization and mechanical exhaust sizing -- with integrated FDS modeling when algebraic methods reach their limits."

@@ -1,8 +1,11 @@
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { ToolCard } from '@/components/tool-card'
+import { tools } from '@/lib/tools'
 import type { LucideIcon } from 'lucide-react'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
+const SITE_URL = 'https://firesafe.ai'
 
 export interface ToolFeature {
   icon: LucideIcon
@@ -20,6 +23,8 @@ interface ToolPageLayoutProps {
   icon: LucideIcon
   /** Page h1 title */
   title: string
+  /** Route of this tool page (e.g. '/tools/egress') — enables breadcrumbs and related tools */
+  href?: string
   /** Hero subtitle paragraph */
   subtitle: string
   /** Hero CTA button text (default: "Start free") */
@@ -60,6 +65,7 @@ interface ToolPageLayoutProps {
 export function ToolPageLayout({
   icon: Icon,
   title,
+  href,
   subtitle,
   ctaText = 'Start free',
   overviewTitle,
@@ -75,6 +81,24 @@ export function ToolPageLayout({
   ctaSubtitle,
   ctaButtonText = 'Get started free',
 }: ToolPageLayoutProps) {
+  const currentIndex = href ? tools.findIndex((t) => t.href === href) : -1
+  const relatedTools =
+    currentIndex >= 0
+      ? [1, 2, 3].map((offset) => tools[(currentIndex + offset) % tools.length])
+      : []
+
+  const breadcrumbJsonLd = href
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Tools', item: `${SITE_URL}/tools` },
+          { '@type': 'ListItem', position: 3, name: title, item: `${SITE_URL}${href}` },
+        ],
+      }
+    : null
+
   const faqJsonLd =
     faqs && faqs.length > 0
       ? {
@@ -90,6 +114,12 @@ export function ToolPageLayout({
 
   return (
     <>
+      {breadcrumbJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+      )}
       {faqJsonLd && (
         <script
           type="application/ld+json"
@@ -187,6 +217,18 @@ export function ToolPageLayout({
                 <h3 className="mb-2 font-semibold text-foreground">{faq.question}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
               </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Related tools */}
+      {relatedTools.length > 0 && (
+        <section className="mx-auto max-w-5xl px-6 pb-20">
+          <h2 className="mb-6 text-2xl font-semibold">More from the toolkit</h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {relatedTools.map((tool) => (
+              <ToolCard key={tool.name} tool={tool} />
             ))}
           </div>
         </section>

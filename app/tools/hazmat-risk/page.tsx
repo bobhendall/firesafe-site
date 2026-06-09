@@ -63,6 +63,7 @@ const standards = [
 export default function HazmatRiskPage() {
   return (
     <ToolPageLayout
+      href="/tools/hazmat-risk"
       icon={FlaskConical}
       title="HazMat Risk Assessment & MAQ Calculator"
       subtitle="Calculate Maximum Allowable Quantities, design control areas, classify hazardous materials, and perform quantitative fire risk assessments. From SDS parsing to event tree analysis -- built for fire protection engineers managing hazmat compliance."

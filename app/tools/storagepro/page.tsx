@@ -41,6 +41,7 @@ const standards = [
 export default function StorageProPage() {
   return (
     <ToolPageLayout
+      href="/tools/storagepro"
       icon={Warehouse}
       title="Storage Fire Protection Design"
       subtitle="Design sprinkler protection for warehouses and distribution centers. Commodity classification, rack analysis, ESFR eligibility, in-rack sprinkler layout, and flue space verification -- all per NFPA 13."

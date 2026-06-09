@@ -32,11 +32,13 @@ Open [http://localhost:3000](http://localhost:3000).
 app/
   page.tsx            Home (hero + tools grid)
   about/  mission/  pricing/  contact/
+  tools/              Tools index page
   tools/<slug>/       One landing page per tool (9 pages)
   sitemap.ts robots.ts
 components/
   flame-hero.tsx      Canvas flame/ember hero animation (30fps, reduced-motion aware)
-  tool-page-layout.tsx Shared layout for all tool pages (incl. FAQPage JSON-LD)
+  tool-page-layout.tsx Shared layout for all tool pages (breadcrumb/FAQ JSON-LD, related tools)
+  tool-card.tsx       Shared tool card (home, /tools, related-tools sections)
   nav-dropdown.tsx    Desktop tools dropdown
   mobile-nav.tsx      Mobile hamburger menu
   site-footer.tsx     Footer with tool/company links + disclaimer

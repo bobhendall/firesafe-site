@@ -45,6 +45,7 @@ const standards = [
 export default function PETutorPage() {
   return (
     <ToolPageLayout
+      href="/tools/pe-tutor"
       icon={GraduationCap}
       title="PE Fire Protection Exam Prep"
       subtitle="AI-powered study tool for PE Fire Protection and NICET certification exams. Practice problems, concept explanations, quizzes, and an AI tutor that knows fire protection engineering inside and out."

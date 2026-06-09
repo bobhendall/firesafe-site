@@ -4,10 +4,9 @@ import Link from 'next/link'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { NavDropdown } from '@/components/nav-dropdown'
+import { ToolsDropdown } from '@/components/nav-dropdown'
 import { MobileNav } from '@/components/mobile-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { toolNavLinks } from '@/lib/tools'
 import './globals.css'
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -136,7 +135,7 @@ export default function RootLayout({
 
               {/* Center nav links */}
               <div className="hidden md:flex items-center gap-1">
-                <NavDropdown label="Tools" items={toolNavLinks} />
+                <ToolsDropdown />
                 <Link href="/about" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted">
                   About
                 </Link>
@@ -157,7 +156,7 @@ export default function RootLayout({
                   <Button variant="ghost" size="sm" asChild><a href={APP_URL}>Sign in</a></Button>
                   <Button size="sm" asChild><a href={APP_URL}>Get started</a></Button>
                 </div>
-                <MobileNav tools={toolNavLinks} appUrl={APP_URL} />
+                <MobileNav appUrl={APP_URL} />
               </div>
             </div>
           </nav>

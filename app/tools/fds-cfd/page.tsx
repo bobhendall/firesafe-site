@@ -119,6 +119,7 @@ const overviewParagraphs = [
 export default function FdsCfdPage() {
   return (
     <ToolPageLayout
+      href="/tools/fds-cfd"
       icon={Flame}
       title="FDS/CFD Fire Modeling Software"
       subtitle="Generate FDS input files from natural language descriptions, validate mesh resolution automatically, and visualize geometry in 3D -- all from your browser. Built for fire protection engineers who need to move faster from scenario definition to simulation results."

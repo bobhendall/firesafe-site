@@ -4,19 +4,9 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
+import { tools } from '@/lib/tools'
 
-interface NavItem {
-  name: string
-  href: string
-}
-
-export function MobileNav({
-  tools,
-  appUrl,
-}: {
-  tools: NavItem[]
-  appUrl: string
-}) {
+export function MobileNav({ appUrl }: { appUrl: string }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
 
@@ -62,26 +52,35 @@ export function MobileNav({
             Tools
           </p>
           <div className="mb-6 grid grid-cols-1 gap-0.5">
-            {tools.map((item) =>
-              item.href.startsWith('http') ? (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
+            {tools.map((item) => {
+              const Icon = item.icon
+              const inner = (
+                <>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/7 ring-1 ring-primary/15">
+                    <Icon className="h-3.5 w-3.5 text-primary" />
+                  </span>
                   {item.name}
+                </>
+              )
+              const className =
+                'flex items-center gap-3 rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground'
+              return item.href.startsWith('http') ? (
+                <a key={item.name} href={item.href} className={className}>
+                  {inner}
                 </a>
               ) : (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  {item.name}
+                <Link key={item.name} href={item.href} onClick={() => setOpen(false)} className={className}>
+                  {inner}
                 </Link>
               )
-            )}
+            })}
+            <Link
+              href="/tools"
+              onClick={() => setOpen(false)}
+              className="mt-1 flex items-center gap-1.5 rounded-md px-3 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-muted"
+            >
+              View all tools
+            </Link>
           </div>
 
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
