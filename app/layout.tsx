@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import Link from 'next/link'
 import { Geist, Geist_Mono } from 'next/font/google'
@@ -42,6 +42,9 @@ export const metadata: Metadata = {
     'fire code comparison',
   ],
   metadataBase: new URL('https://firesafe.ai'),
+  alternates: {
+    canonical: './',
+  },
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
@@ -72,6 +75,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#d4520a',
 }
 
 export default function RootLayout({

@@ -61,4 +61,4 @@ lib/
 | `pnpm dev` | Start dev server |
 | `pnpm build` | Production build |
 | `pnpm start` | Serve production build |
-| `pnpm lint` | Lint |
+| `pnpm typecheck` | TypeScript check (`tsc --noEmit`) |
