@@ -75,8 +75,27 @@ export function ToolPageLayout({
   ctaSubtitle,
   ctaButtonText = 'Get started free',
 }: ToolPageLayoutProps) {
+  const faqJsonLd =
+    faqs && faqs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          })),
+        }
+      : null
+
   return (
     <>
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       {/* Hero */}
       <section className="flex flex-col items-center px-6 pt-20 pb-16 text-center">
         <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
@@ -102,7 +121,7 @@ export function ToolPageLayout({
         <h2 className="mb-4 text-2xl font-semibold">{overviewTitle}</h2>
         <div className="space-y-4 text-muted-foreground leading-relaxed">
           {overviewParagraphs.map((p, i) => (
-            <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
+            <p key={i}>{p}</p>
           ))}
         </div>
       </section>
