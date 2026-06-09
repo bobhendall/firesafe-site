@@ -43,10 +43,10 @@ interface ToolPageLayoutProps {
   /** Optional slot for custom content between standards and FAQ (e.g. PE Tutor exam domains) */
   children?: React.ReactNode
 
-  /** Use cases section (optional â omit for pages without use cases) */
+  /** Use cases section (optional — omit for pages without use cases) */
   useCases?: { label: string; text: string }[]
 
-  /** FAQ items (optional â omit for pages without FAQ) */
+  /** FAQ items (optional — omit for pages without FAQ) */
   faqs?: ToolFaq[]
 
   /** Bottom CTA heading */
