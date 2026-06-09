@@ -119,6 +119,7 @@ const faqs = [
 export default function EgressPage() {
   return (
     <ToolPageLayout
+      href="/tools/egress"
       icon={DoorOpen}
       title="Egress Analysis & ASET/RSET Calculator"
       subtitle="Perform complete egress analyses with occupant load calculations, travel distance verification, exit capacity checks, and ASET/RSET evaluation. Integrated with smoke control and FDS outputs for seamless performance-based design."

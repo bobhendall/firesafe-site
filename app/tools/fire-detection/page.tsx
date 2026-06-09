@@ -113,6 +113,7 @@ const standards = [
 export default function FireDetectionPage() {
   return (
     <ToolPageLayout
+      href="/tools/fire-detection"
       icon={Bell}
       title="Fire Detection System Design Tool"
       subtitle="Design fire detection and notification systems per NFPA 72. Automated detector spacing with ceiling height adjustments, notification appliance layout with candela verification, and comprehensive compliance checking against IBC 907."

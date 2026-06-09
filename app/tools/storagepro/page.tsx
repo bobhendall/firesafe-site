@@ -3,11 +3,11 @@ import { Warehouse, Layers, Package, Ruler, Droplets, AlertTriangle, CheckCircle
 import { ToolPageLayout } from '@/components/tool-page-layout'
 
 export const metadata: Metadata = {
-  title: 'StoragePro â NFPA 13 Storage Sprinkler Design | FireSafe.AI',
+  title: 'StoragePro — NFPA 13 Storage Sprinkler Design | FireSafe.AI',
   description:
     'AI-powered storage fire protection analysis with commodity classification, rack sprinkler design, ESFR eligibility, flue space rules, and NFPA 13 compliance for warehouses and distribution centers.',
   openGraph: {
-    title: 'StoragePro â NFPA 13 Storage Sprinkler Design | FireSafe.AI',
+    title: 'StoragePro — NFPA 13 Storage Sprinkler Design | FireSafe.AI',
     description:
       'AI-powered storage fire protection analysis with commodity classification, rack sprinkler design, ESFR eligibility, flue space rules, and NFPA 13 compliance.',
   },
@@ -41,6 +41,7 @@ const standards = [
 export default function StorageProPage() {
   return (
     <ToolPageLayout
+      href="/tools/storagepro"
       icon={Warehouse}
       title="Storage Fire Protection Design"
       subtitle="Design sprinkler protection for warehouses and distribution centers. Commodity classification, rack analysis, ESFR eligibility, in-rack sprinkler layout, and flue space verification -- all per NFPA 13."

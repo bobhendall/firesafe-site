@@ -81,14 +81,14 @@ const faqs = [
 ]
 
 const standards = [
-  'NIST Special Publication 1019 â FDS User Guide',
-  'NIST Special Publication 1018 â FDS Technical Reference Guide',
-  'NUREG-1824 / EPRI 1011999 â V&V of Fire Models',
+  'NIST Special Publication 1019 — FDS User Guide',
+  'NIST Special Publication 1018 — FDS Technical Reference Guide',
+  'NUREG-1824 / EPRI 1011999 — V&V of Fire Models',
   'SFPE Handbook of Fire Protection Engineering, 5th Ed.',
-  'NFPA 92 â Standard for Smoke Control Systems',
+  'NFPA 92 — Standard for Smoke Control Systems',
   'SFPE Guide to Performance-Based Fire Protection',
-  'ASTM E1355 â Evaluating Predictive Capability of Fire Models',
-  'ISO 16733 â Fire Safety Engineering â Design Fire Scenarios',
+  'ASTM E1355 — Evaluating Predictive Capability of Fire Models',
+  'ISO 16733 — Fire Safety Engineering — Design Fire Scenarios',
 ]
 
 const useCases = [
@@ -119,6 +119,7 @@ const overviewParagraphs = [
 export default function FdsCfdPage() {
   return (
     <ToolPageLayout
+      href="/tools/fds-cfd"
       icon={Flame}
       title="FDS/CFD Fire Modeling Software"
       subtitle="Generate FDS input files from natural language descriptions, validate mesh resolution automatically, and visualize geometry in 3D -- all from your browser. Built for fire protection engineers who need to move faster from scenario definition to simulation results."

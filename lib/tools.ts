@@ -27,7 +27,7 @@ export const tools: ToolDefinition[] = [
     name: 'FDS/CFD Modeling',
     href: '/tools/fds-cfd',
     description:
-      'Describe a fire scenario in English, get a syntactically correct FDS input file. Mesh validation via D*/Î´x. 3D preview before you run the solver.',
+      'Describe a fire scenario in English, get a syntactically correct FDS input file. Mesh validation via D*/δx. 3D preview before you run the solver.',
   },
   {
     icon: Wind,
@@ -55,7 +55,7 @@ export const tools: ToolDefinition[] = [
     name: 'Code Consulting',
     href: '/tools/code-consulting',
     description:
-      'Natural language search across IBC, IFC, and NFPA. Ask a question, get the clause â with cross-references.',
+      'Natural language search across IBC, IFC, and NFPA. Ask a question, get the clause — with cross-references.',
   },
   {
     icon: Bell,
@@ -83,7 +83,7 @@ export const tools: ToolDefinition[] = [
     name: 'StoragePro',
     href: '/tools/storagepro',
     description:
-      'NFPA 13 & IFC storage layout. Commodity classification â ceiling height â sprinkler design. One flow.',
+      'NFPA 13 & IFC storage layout. Commodity classification → ceiling height → sprinkler design. One flow.',
   },
   {
     icon: GraduationCap,

@@ -1,8 +1,11 @@
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { ToolCard } from '@/components/tool-card'
+import { tools } from '@/lib/tools'
 import type { LucideIcon } from 'lucide-react'
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
+const SITE_URL = 'https://firesafe.ai'
 
 export interface ToolFeature {
   icon: LucideIcon
@@ -20,6 +23,8 @@ interface ToolPageLayoutProps {
   icon: LucideIcon
   /** Page h1 title */
   title: string
+  /** Route of this tool page (e.g. '/tools/egress') — enables breadcrumbs and related tools */
+  href?: string
   /** Hero subtitle paragraph */
   subtitle: string
   /** Hero CTA button text (default: "Start free") */
@@ -43,10 +48,10 @@ interface ToolPageLayoutProps {
   /** Optional slot for custom content between standards and FAQ (e.g. PE Tutor exam domains) */
   children?: React.ReactNode
 
-  /** Use cases section (optional â omit for pages without use cases) */
+  /** Use cases section (optional — omit for pages without use cases) */
   useCases?: { label: string; text: string }[]
 
-  /** FAQ items (optional â omit for pages without FAQ) */
+  /** FAQ items (optional — omit for pages without FAQ) */
   faqs?: ToolFaq[]
 
   /** Bottom CTA heading */
@@ -60,6 +65,7 @@ interface ToolPageLayoutProps {
 export function ToolPageLayout({
   icon: Icon,
   title,
+  href,
   subtitle,
   ctaText = 'Start free',
   overviewTitle,
@@ -75,8 +81,51 @@ export function ToolPageLayout({
   ctaSubtitle,
   ctaButtonText = 'Get started free',
 }: ToolPageLayoutProps) {
+  const currentIndex = href ? tools.findIndex((t) => t.href === href) : -1
+  const relatedTools =
+    currentIndex >= 0
+      ? [1, 2, 3].map((offset) => tools[(currentIndex + offset) % tools.length])
+      : []
+
+  const breadcrumbJsonLd = href
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Tools', item: `${SITE_URL}/tools` },
+          { '@type': 'ListItem', position: 3, name: title, item: `${SITE_URL}${href}` },
+        ],
+      }
+    : null
+
+  const faqJsonLd =
+    faqs && faqs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          })),
+        }
+      : null
+
   return (
     <>
+      {breadcrumbJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+      )}
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       {/* Hero */}
       <section className="flex flex-col items-center px-6 pt-20 pb-16 text-center">
         <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
@@ -102,7 +151,7 @@ export function ToolPageLayout({
         <h2 className="mb-4 text-2xl font-semibold">{overviewTitle}</h2>
         <div className="space-y-4 text-muted-foreground leading-relaxed">
           {overviewParagraphs.map((p, i) => (
-            <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
+            <p key={i}>{p}</p>
           ))}
         </div>
       </section>
@@ -168,6 +217,18 @@ export function ToolPageLayout({
                 <h3 className="mb-2 font-semibold text-foreground">{faq.question}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
               </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Related tools */}
+      {relatedTools.length > 0 && (
+        <section className="mx-auto max-w-5xl px-6 pb-20">
+          <h2 className="mb-6 text-2xl font-semibold">More from the toolkit</h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {relatedTools.map((tool) => (
+              <ToolCard key={tool.name} tool={tool} />
             ))}
           </div>
         </section>

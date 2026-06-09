@@ -8,10 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'suppression', 'code-consulting', 'hazmat-risk', 'storagepro', 'pe-tutor',
   ]
 
-  const pages = ['about', 'mission', 'pricing']
+  const pages = ['about', 'mission', 'pricing', 'contact']
 
   return [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
+    { url: `${BASE_URL}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     ...pages.map((page) => ({
       url: `${BASE_URL}/${page}`,
       lastModified: new Date(),

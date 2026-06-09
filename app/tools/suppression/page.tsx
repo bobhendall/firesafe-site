@@ -63,6 +63,7 @@ const standards = [
 export default function SuppressionPage() {
   return (
     <ToolPageLayout
+      href="/tools/suppression"
       icon={Droplets}
       title="Sprinkler Design & Suppression System Software"
       subtitle="Design automatic sprinkler systems with AI-assisted hydraulic calculations, hazard classification, K-factor selection, and water supply analysis. From Light Hazard offices to ESFR warehouse protection -- all per NFPA 13."
