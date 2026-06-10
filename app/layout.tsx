@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://firesafe.ai'),
   alternates: {
     canonical: './',
+    types: {
+      'application/rss+xml': '/feed.xml',
+    },
   },
   icons: {
     icon: '/favicon.ico',

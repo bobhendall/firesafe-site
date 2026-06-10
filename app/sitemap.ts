@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'suppression', 'code-consulting', 'hazmat-risk', 'storagepro', 'pe-tutor',
   ]
 
-  const pages = ['about', 'mission', 'pricing', 'contact']
+  const pages = ['about', 'mission', 'pricing', 'contact', 'privacy', 'terms']
 
   return [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },

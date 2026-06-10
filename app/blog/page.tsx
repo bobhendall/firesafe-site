@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: 'Blog — FireSafe.AI',
     description:
       'Field notes on fire protection engineering from people who stamp plans.',
+    images: [{ url: '/og/blog/index.png', width: 1200, height: 630 }],
   },
 }
 
