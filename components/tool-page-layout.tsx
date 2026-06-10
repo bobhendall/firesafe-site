@@ -38,12 +38,12 @@ interface ToolPageLayoutProps {
   /** Features grid items (6 recommended) */
   features: ToolFeature[]
 
-  /** Standards section heading */
-  standardsTitle: string
+  /** Standards section heading (optional — omit with standards for pages with custom standards sections) */
+  standardsTitle?: string
   /** Standards intro paragraph (optional) */
   standardsIntro?: string
   /** Standards list items */
-  standards: string[]
+  standards?: string[]
 
   /** Optional slot for custom content between standards and FAQ (e.g. PE Tutor exam domains) */
   children?: React.ReactNode
@@ -176,6 +176,7 @@ export function ToolPageLayout({
       </section>
 
       {/* Standards */}
+      {standards && standards.length > 0 && (
       <section className="mx-auto max-w-4xl px-6 pb-16">
         <h2 className="mb-4 text-2xl font-semibold">{standardsTitle}</h2>
         {standardsIntro && (
@@ -189,6 +190,7 @@ export function ToolPageLayout({
           ))}
         </div>
       </section>
+      )}
 
       {/* Custom slot for unique page sections */}
       {children}
