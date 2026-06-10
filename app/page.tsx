@@ -40,7 +40,7 @@ const standards = [
 
 export default function MarketingPage() {
   return (
-    <>
+    <main>
       {/* Hero with flame animation */}
       <FlameHero />
 
@@ -117,13 +117,13 @@ export default function MarketingPage() {
           <div className="mt-8">
             <a
               href={APP_URL}
-              className="inline-flex items-center gap-2 rounded-[9px] border border-black/12 bg-primary px-7 py-3 text-[15px] font-semibold text-white shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all hover:-translate-y-0.5 hover:bg-[#c04a09]"
+              className="inline-flex items-center gap-2 rounded-[9px] border border-black/12 bg-primary px-7 py-3 text-[15px] font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all hover:-translate-y-0.5 hover:bg-[#c04a09]"
             >
               Get started free <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
       </section>
-    </>
+    </main>
   )
 }

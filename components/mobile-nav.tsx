@@ -112,7 +112,7 @@ export function MobileNav({ appUrl }: { appUrl: string }) {
           <div className="flex flex-col gap-3">
             <a
               href={appUrl}
-              className="inline-flex items-center justify-center rounded-[9px] border border-black/12 bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all hover:bg-[#c04a09]"
+              className="inline-flex items-center justify-center rounded-[9px] border border-black/12 bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all hover:bg-[#c04a09]"
             >
               Get started free
             </a>

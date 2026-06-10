@@ -114,7 +114,7 @@ export default function PricingPage() {
               }`}
             >
               {tier.highlighted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-white">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-foreground">
                   Most popular
                 </div>
               )}
@@ -134,7 +134,7 @@ export default function PricingPage() {
                 rel="noopener noreferrer"
                 className={`mb-8 inline-flex items-center justify-center gap-2 rounded-[9px] border px-6 py-2.5 text-[15px] font-semibold transition-all hover:-translate-y-0.5 ${
                   tier.highlighted
-                    ? 'border-black/12 bg-primary text-white shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] hover:bg-[#c04a09]'
+                    ? 'border-black/12 bg-primary text-primary-foreground shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] hover:bg-[#c04a09]'
                     : 'border-border bg-card text-foreground shadow-sm hover:border-muted-foreground/30 hover:bg-muted'
                 }`}
               >
@@ -206,7 +206,7 @@ export default function PricingPage() {
               href={APP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[9px] border border-black/12 bg-primary px-7 py-3 text-[15px] font-semibold text-white shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all hover:-translate-y-0.5 hover:bg-[#c04a09]"
+              className="inline-flex items-center gap-2 rounded-[9px] border border-black/12 bg-primary px-7 py-3 text-[15px] font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(212,82,10,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all hover:-translate-y-0.5 hover:bg-[#c04a09]"
             >
               Get started free <ArrowRight className="h-4 w-4" />
             </a>

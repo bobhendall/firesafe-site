@@ -32,7 +32,7 @@ export function ProductMockup() {
         {/* Answer card */}
         <div className="mt-4 rounded-xl border border-border bg-background p-4 sm:p-5">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-primary ring-1 ring-primary/20">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 px-2.5 py-0.5 text-[11px] font-semibold text-primary ring-1 ring-primary/20">
               <Sparkles className="h-3 w-3" /> Answer
             </span>
             <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground">
@@ -41,7 +41,7 @@ export function ProductMockup() {
             <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground">
               Table 1017.2
             </span>
-            <span className="ml-auto rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+            <span className="ml-auto rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
               High confidence
             </span>
           </div>

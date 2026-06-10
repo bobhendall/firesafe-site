@@ -50,8 +50,8 @@
   --popover:             0   0% 100%;
   --popover-foreground: 20  25%  12%;
 
-  /* ─── Brand / Action (deep ember) ─────────────────────── */
-  --primary:            21  92%  45%;
+  /* ─── Brand / Action (deep ember; 38% L clears WCAG AA even on tints) ─── */
+  --primary:            21  92%  38%;
   --primary-foreground:  0   0% 100%;
   --secondary:          32  24%  95%;
   --secondary-foreground:22 20%  28%;
@@ -91,7 +91,7 @@
     --popover-foreground: 36  28%  93%;
 
     --primary:            24  95%  55%;
-    --primary-foreground:  0   0% 100%;
+    --primary-foreground: 20  14%   8%;
     --secondary:          21  10%  16%;
     --secondary-foreground:34 20%  80%;
 

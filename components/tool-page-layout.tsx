@@ -113,7 +113,7 @@ export function ToolPageLayout({
       : null
 
   return (
-    <>
+    <main>
       {breadcrumbJsonLd && (
         <script
           type="application/ld+json"
@@ -248,6 +248,6 @@ export function ToolPageLayout({
           </Button>
         </div>
       </section>
-    </>
+    </main>
   )
 }
