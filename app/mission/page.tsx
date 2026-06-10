@@ -101,6 +101,9 @@ export default function MissionPage() {
             </div>
           ))}
         </div>
+        <p className="mx-auto mt-10 max-w-5xl text-center text-xs text-background/40">
+          Fire loss figures: NFPA &ldquo;Fire Loss in the United States&rdquo; annual estimates.
+        </p>
       </section>
 
       {/* The Reckoning - Pull Quote */}

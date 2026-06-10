@@ -134,8 +134,8 @@ export default function AboutPage() {
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             <div className="rounded-xl border border-border bg-card p-5 text-center">
-              <p className="text-3xl font-extrabold text-primary">11,000+</p>
-              <p className="mt-1 text-sm text-muted-foreground">Pages of standards indexed</p>
+              <p className="text-3xl font-extrabold text-primary">20+</p>
+              <p className="mt-1 text-sm text-muted-foreground">Codes &amp; standards indexed</p>
             </div>
             <div className="rounded-xl border border-border bg-card p-5 text-center">
               <p className="text-3xl font-extrabold text-primary">100%</p>
