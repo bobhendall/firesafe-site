@@ -237,7 +237,7 @@ export function ToolPageLayout({
       )}
 
       {/* CTA */}
-      <section className="flex flex-col items-center border-t border-border px-6 py-16 text-center">
+      <section className="flex flex-col items-center border-t border-border px-6 py-20 text-center">
         <h2 className="text-2xl font-semibold">{ctaHeading}</h2>
         <p className="mt-3 max-w-lg text-muted-foreground">{ctaSubtitle}</p>
         <div className="mt-6">
