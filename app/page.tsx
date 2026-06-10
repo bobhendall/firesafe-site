@@ -1,5 +1,6 @@
 import { ArrowRight, MessageSquareText, Calculator, FileCheck2 } from 'lucide-react'
 import { FlameHero } from '@/components/flame-hero'
+import { ProductMockup } from '@/components/product-mockup'
 import { ToolCard } from '@/components/tool-card'
 import { tools } from '@/lib/tools'
 
@@ -43,8 +44,13 @@ export default function MarketingPage() {
       {/* Hero with flame animation */}
       <FlameHero />
 
+      {/* Product preview */}
+      <section className="mx-auto max-w-6xl px-6 pb-20 pt-2 sm:pb-24">
+        <ProductMockup />
+      </section>
+
       {/* Tools grid */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="mx-auto max-w-6xl px-6 pb-20 sm:pb-24">
         <div className="mb-12 text-center">
           <h2 className="text-xl font-bold tracking-tight text-foreground">The toolkit</h2>
           <p className="mt-1.5 text-sm text-muted-foreground">Every tool references the actual standard. Every output is traceable.</p>
@@ -57,7 +63,7 @@ export default function MarketingPage() {
       </section>
 
       {/* How it works */}
-      <section className="border-t border-border/50 bg-muted/20 px-6 py-24">
+      <section className="border-t border-border/50 bg-muted/20 px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 text-center">
             <h2 className="text-xl font-bold tracking-tight text-foreground">How it works</h2>
@@ -81,7 +87,7 @@ export default function MarketingPage() {
       </section>
 
       {/* Standards strip */}
-      <section className="border-t border-border/50 px-6 py-16">
+      <section className="border-t border-border/50 px-6 py-20">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Grounded in the standards you work with
