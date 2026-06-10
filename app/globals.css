@@ -27,55 +27,90 @@
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-space-grotesk), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 /*
- * FireSafe.AI — Light & Clean Design System
+ * FireSafe.AI — "Ember & Ash" Design System
  *
- * Professional light theme inspired by Stripe/Linear.
- * Clean whites, subtle grays, with a refined orange accent.
+ * Warm paper light mode / charred charcoal dark mode, unified by a
+ * single ember-orange brand hue. Dark mode follows the OS preference.
  *
- * Palette:
- *   Background  — white                    HSL   0  0% 100%
- *   Foreground  — near-black               HSL 220 14%  10%
- *   Primary     — refined orange            HSL  24 95%  53%
- *   Accent      — soft orange              HSL  25 90%  95%
- *   Destructive — signal red               HSL   0 72%  51%
+ * Light:  warm paper bg, ink foreground, deep ember primary
+ * Dark:   charred charcoal bg, warm cream foreground, glowing ember primary
  */
 :root {
-  /* ─── Core (warm white) ────────────────────────────── */
-  --background:         30  50%  99%;
-  --foreground:         24  30%  10%;
+  /* ─── Core (warm paper) ────────────────────────────── */
+  --background:         36  40%  98%;
+  --foreground:         20  25%  12%;
 
   /* ─── Card / Popover ────────────────────────────────── */
   --card:                0   0% 100%;
-  --card-foreground:    24  30%  10%;
+  --card-foreground:    20  25%  12%;
   --popover:             0   0% 100%;
-  --popover-foreground: 24  30%  10%;
+  --popover-foreground: 20  25%  12%;
 
-  /* ─── Brand / Action (deeper orange for contrast) ──── */
-  --primary:            22  90%  44%;
+  /* ─── Brand / Action (deep ember) ─────────────────────── */
+  --primary:            21  92%  45%;
   --primary-foreground:  0   0% 100%;
-  --secondary:          30  20%  96%;
-  --secondary-foreground:24 20%  30%;
+  --secondary:          32  24%  95%;
+  --secondary-foreground:22 20%  28%;
 
-  /* ─── Muted (warm gray) ────────────────────────────── */
-  --muted:              30  15%  96%;
-  --muted-foreground:   24  10%  46%;
+  /* ─── Muted (warm ash gray) ────────────────────────── */
+  --muted:              33  22%  95%;
+  --muted-foreground:   22  10%  43%;
 
-  /* ─── Accent (soft orange tint) ────────────────────── */
-  --accent:             25  90%  95%;
-  --accent-foreground:  22  90%  38%;
+  /* ─── Accent (soft ember tint) ─────────────────────── */
+  --accent:             26  95%  93%;
+  --accent-foreground:  21  92%  38%;
 
   /* ─── Danger ─────────────────────────────────────────── */
   --destructive:         0  72%  51%;
   --destructive-foreground: 0  0% 100%;
 
   /* ─── Structural (warm borders) ────────────────────── */
-  --border:             30  15%  90%;
-  --input:              30  15%  90%;
-  --ring:               22  90%  44%;
+  --border:             32  20%  88%;
+  --input:              32  20%  88%;
+  --ring:               21  92%  45%;
   --radius:             0.5rem;
+
+  /* ─── Flame hero text baselines (animated by JS) ───── */
+  --hero-head-base: 28, 25, 23;
+  --hero-sub-base: 113, 110, 105;
+}
+
+/* ─── Dark mode: charred charcoal with glowing ember ──── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background:         20  14%   8%;
+    --foreground:         36  28%  93%;
+
+    --card:               21  13%  11%;
+    --card-foreground:    36  28%  93%;
+    --popover:            21  13%  11%;
+    --popover-foreground: 36  28%  93%;
+
+    --primary:            24  95%  55%;
+    --primary-foreground:  0   0% 100%;
+    --secondary:          21  10%  16%;
+    --secondary-foreground:34 20%  80%;
+
+    --muted:              21  11%  14%;
+    --muted-foreground:   30  10%  62%;
+
+    --accent:             21  50%  17%;
+    --accent-foreground:  26  95%  68%;
+
+    --destructive:         0  72%  55%;
+    --destructive-foreground: 0  0% 100%;
+
+    --border:             22  11%  19%;
+    --input:              22  11%  19%;
+    --ring:               24  95%  55%;
+
+    --hero-head-base: 244, 240, 235;
+    --hero-sub-base: 176, 170, 162;
+  }
 }
 
 /* ─── Flame animations ────────────────────────────────── */
@@ -114,6 +149,12 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Display face for page-level headings; cards/UI stay on Geist */
+  h1, h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 
   /* Scrollbar styling — subtle amber tint */

@@ -31,6 +31,16 @@ export function FlameHero() {
     const soot = sootEl
     const textContainer = textEl
 
+    // Theme-aware text baselines (set in globals.css per color scheme)
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const parseBase = (name: string, fallback: number[]) => {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue(name)
+      const parts = raw.split(',').map((n) => parseInt(n.trim(), 10))
+      return parts.length === 3 && parts.every((n) => !isNaN(n)) ? parts : fallback
+    }
+    const headBase = parseBase('--hero-head-base', [28, 25, 23])
+    const subBase = parseBase('--hero-sub-base', [113, 110, 105])
+
     const dpr = window.devicePixelRatio || 1
     const W = canvas.width / dpr
     const H = canvas.height / dpr
@@ -262,15 +272,14 @@ export function FlameHero() {
       const sootLevel = getSootPhase()
       soot.style.opacity = String(sootLevel * 0.55)
 
-      // Adapt text colors for visibility during soot darkening
-      const headR = Math.round(28 + sootLevel * 217)
-      const headG = Math.round(25 + sootLevel * 205)
-      const headB = Math.round(23 + sootLevel * 197)
-      const subR = Math.round(113 + sootLevel * 122)
-      const subG = Math.round(113 + sootLevel * 112)
-      const subB = Math.round(122 + sootLevel * 98)
-      textContainer.style.setProperty('--hero-head', `rgb(${headR},${headG},${headB})`)
-      textContainer.style.setProperty('--hero-sub', `rgb(${subR},${subG},${subB})`)
+      // Adapt text colors for visibility during soot darkening.
+      // Light mode interpolates ink -> warm cream; dark mode text is
+      // already light, so it only brightens slightly as the soot deepens.
+      const lerp = (from: number, to: number) => Math.round(from + sootLevel * (to - from))
+      const headTarget = isDark ? [255, 252, 248] : [245, 230, 220]
+      const subTarget = isDark ? [210, 204, 196] : [235, 225, 220]
+      textContainer.style.setProperty('--hero-head', `rgb(${lerp(headBase[0], headTarget[0])},${lerp(headBase[1], headTarget[1])},${lerp(headBase[2], headTarget[2])})`)
+      textContainer.style.setProperty('--hero-sub', `rgb(${lerp(subBase[0], subTarget[0])},${lerp(subBase[1], subTarget[1])},${lerp(subBase[2], subTarget[2])})`)
 
       // Warm radial glow
       lightPhase += 0.01
@@ -321,7 +330,7 @@ export function FlameHero() {
   }, [animate])
 
   return (
-    <div ref={wrapperRef} className="relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(30 50% 98%) 0%, hsl(30 50% 99%) 100%)' }}>
+    <div ref={wrapperRef} className="relative overflow-hidden bg-gradient-to-b from-muted/60 to-background">
       {/* Soot darkening overlay */}
       <div
         ref={sootRef}
@@ -339,7 +348,7 @@ export function FlameHero() {
       />
 
       {/* Hero content */}
-      <section ref={textRef} className="relative z-[3] mx-auto max-w-2xl px-6 pb-18 pt-24 text-center" style={{ '--hero-head': 'rgb(28,25,23)', '--hero-sub': 'rgb(113,113,122)' } as React.CSSProperties}>
+      <section ref={textRef} className="relative z-[3] mx-auto max-w-2xl px-6 pb-18 pt-24 text-center" style={{ '--hero-head': 'rgb(var(--hero-head-base))', '--hero-sub': 'rgb(var(--hero-sub-base))' } as React.CSSProperties}>
         {/* Animated flame SVG */}
         <div className="relative mb-5 inline-block">
           <svg
