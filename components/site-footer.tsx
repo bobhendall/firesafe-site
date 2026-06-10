@@ -103,7 +103,20 @@ export function SiteFooter() {
             applicable codes and standards. The Authority Having Jurisdiction
             (AHJ) retains final authority on all compliance matters.
           </p>
-          <p className="mt-3">&copy; {new Date().getFullYear()} FireSafe.AI</p>
+          <p className="mt-3">
+            &copy; {new Date().getFullYear()} FireSafe.AI &middot;{' '}
+            <Link href="/privacy" className="transition-colors hover:text-foreground">
+              Privacy
+            </Link>{' '}
+            &middot;{' '}
+            <Link href="/terms" className="transition-colors hover:text-foreground">
+              Terms
+            </Link>{' '}
+            &middot;{' '}
+            <a href="/feed.xml" className="transition-colors hover:text-foreground">
+              RSS
+            </a>
+          </p>
         </div>
       </div>
     </footer>
