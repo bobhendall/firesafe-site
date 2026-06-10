@@ -74,6 +74,13 @@ export function ToolsDropdown() {
             >
               View all tools <ArrowRight className="h-3.5 w-3.5" />
             </Link>
+            <Link
+              href="/calculators"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-1.5 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            >
+              Free calculators
+            </Link>
           </div>
         </div>
       )}

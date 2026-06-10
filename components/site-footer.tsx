@@ -6,6 +6,8 @@ const companyLinks = [
   { name: 'About', href: '/about' },
   { name: 'Mission', href: '/mission' },
   { name: 'Pricing', href: '/pricing' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Free Calculators', href: '/calculators' },
   { name: 'Contact', href: '/contact' },
 ]
 
