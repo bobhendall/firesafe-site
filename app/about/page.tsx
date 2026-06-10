@@ -4,11 +4,11 @@ import { Flame, ArrowRight, Shield, BookOpen, Users, Building2 } from 'lucide-re
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
 
 export const metadata: Metadata = {
-  title: 'About \u2014 FireSafe.AI',
+  title: 'About — FireSafe.AI',
   description:
     'FireSafe.AI builds AI-powered tools for fire protection engineers, AHJs, and field technicians. Ten specialized tools grounded in NFPA, IBC, and IFC standards.',
   openGraph: {
-    title: 'About \u2014 FireSafe.AI',
+    title: 'About — FireSafe.AI',
     description:
       'AI-powered fire protection engineering tools built for the professionals who keep buildings safe.',
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
-      {/* \u2500\u2500 Hero \u2500\u2500 */}
+      {/* ── Hero ── */}
       <section className="px-6 pb-20 pt-32">
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
@@ -37,7 +37,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* \u2500\u2500 What We Do \u2500\u2500 */}
+      {/* ── What We Do ── */}
       <section className="border-t border-border/50 bg-muted/20 px-6 py-24">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -45,8 +45,8 @@ export default function AboutPage() {
           </h2>
           <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
             FireSafe.AI is a suite of ten AI-powered tools purpose-built for fire protection
-            engineering workflows. Every tool is grounded in real standards \u2014 NFPA, IBC, IFC,
-            UFC \u2014 not general-purpose AI guessing at code language.
+            engineering workflows. Every tool is grounded in real standards — NFPA, IBC, IFC,
+            UFC — not general-purpose AI guessing at code language.
           </p>
           <div className="mt-12 grid gap-8 sm:grid-cols-2">
             {[
@@ -72,7 +72,7 @@ export default function AboutPage() {
                 icon: Building2,
                 title: 'Ten specialized tools',
                 description:
-                  'FDS/CFD modeling, smoke control analysis, egress calculations, sprinkler design, fire detection layout, hazmat compliance, code search, storage protection, and PE exam prep \u2014 all in one platform.',
+                  'FDS/CFD modeling, smoke control analysis, egress calculations, sprinkler design, fire detection layout, hazmat compliance, code search, storage protection, and PE exam prep — all in one platform.',
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-4">
@@ -89,7 +89,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* \u2500\u2500 Our Approach \u2500\u2500 */}
+      {/* ── Our Approach ── */}
       <section className="border-t border-border/50 px-6 py-24">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -97,7 +97,7 @@ export default function AboutPage() {
           </h2>
           <div className="max-w-2xl space-y-6 text-lg leading-relaxed text-muted-foreground">
             <p>
-              Fire protection engineering is a field where accuracy isn&apos;t optional \u2014 it&apos;s
+              Fire protection engineering is a field where accuracy isn&apos;t optional — it&apos;s
               life-or-death. We take that seriously. Every feature we ship is designed with one
               question in mind: <span className="font-medium text-foreground">would a licensed PE trust this in their workflow?</span>
             </p>
@@ -115,7 +115,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* \u2500\u2500 Trust Signals \u2500\u2500 */}
+      {/* ── Trust Signals ── */}
       <section className="border-t border-border/50 bg-muted/20 px-6 py-24">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -149,7 +149,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* \u2500\u2500 CTA \u2500\u2500 */}
+      {/* ── CTA ── */}
       <section className="border-t border-border/50 px-6 py-20">
         <div className="mx-auto max-w-xl text-center">
           <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">

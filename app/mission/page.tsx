@@ -4,11 +4,11 @@ import { Flame, ArrowRight, Sparkles, BookOpen, Clock, Users } from 'lucide-reac
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.firesafe.ai'
 
 export const metadata: Metadata = {
-  title: 'Our Mission \u2014 FireSafe.AI',
+  title: 'Our Mission — FireSafe.AI',
   description:
     'We gave ourselves fire. We owe ourselves mastery over it. FireSafe.AI exists to close the gap between what we know about fire safety and what we apply.',
   openGraph: {
-    title: 'Our Mission \u2014 FireSafe.AI',
+    title: 'Our Mission — FireSafe.AI',
     description:
       'We gave ourselves fire. We owe ourselves mastery over it.',
   },
@@ -18,7 +18,7 @@ const milestones = [
   {
     year: '10,000 BC',
     event: 'Controlled fire',
-    detail: 'Humanity learns to hold flame \u2014 agriculture, warmth, civilization follow.',
+    detail: 'Humanity learns to hold flame — agriculture, warmth, civilization follow.',
   },
   {
     year: '64 AD',

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     'The full FireSafe.AI toolkit: FDS/CFD modeling, smoke control, egress analysis, code search, fire detection, suppression design, hazmat compliance, storage protection, and PE exam prep.',
   openGraph: {
+    images: [{ url: '/og/tools.png', width: 1200, height: 630 }],
     title: 'All Tools — FireSafe.AI',
     description:
       'Ten AI-powered fire protection engineering tools grounded in NFPA, IBC, and IFC standards.',

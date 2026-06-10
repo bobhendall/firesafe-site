@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     'AI-assisted fire detection design per NFPA 72 -- detector spacing, notification appliance placement, ceiling height adjustments, and compliance checking.',
   openGraph: {
+    images: [{ url: '/og/fire-detection.png', width: 1200, height: 630 }],
     title: 'Fire Detection System Design Tool | FireSafe.AI',
     description:
       'AI-assisted fire detection design per NFPA 72 -- detector spacing, notification appliance placement, ceiling height adjustments, and compliance checking.',

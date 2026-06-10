@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     'AI-powered sprinkler system design with hydraulic calculations, K-factor selection, hazard classification, and NFPA 13 compliance -- from Light Hazard to ESFR.',
   openGraph: {
+    images: [{ url: '/og/suppression.png', width: 1200, height: 630 }],
     title: 'Sprinkler Design & Suppression System Software | FireSafe.AI',
     description:
       'AI-powered sprinkler system design with hydraulic calculations, K-factor selection, hazard classification, and NFPA 13 compliance -- from Light Hazard to ESFR.',

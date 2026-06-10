@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     'AI-powered PE Fire Protection and NICET exam preparation with practice problems, concept explanations, quizzes, and spaced repetition. Covers fire dynamics, NFPA 13/72, IBC egress, and all PE exam domains.',
   openGraph: {
+    images: [{ url: '/og/pe-tutor.png', width: 1200, height: 630 }],
     title: 'PE Fire Protection Exam Prep & NICET Study Tool | FireSafe.AI',
     description:
       'AI-powered PE and NICET exam prep with practice problems, concept explanations, quizzes, and spaced repetition across all fire protection engineering domains.',

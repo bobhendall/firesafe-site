@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     'AI-powered FDS input file generation, mesh validation, and 3D visualization. Streamline your computational fire dynamics workflow with natural language to FDS conversion.',
   openGraph: {
+    images: [{ url: '/og/fds-cfd.png', width: 1200, height: 630 }],
     title: 'FDS/CFD Fire Modeling Software | FireSafe.AI',
     description:
       'AI-powered FDS input file generation, mesh validation, and 3D visualization. Streamline your computational fire dynamics workflow with natural language to FDS conversion.',
