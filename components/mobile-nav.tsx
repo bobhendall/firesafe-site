@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
@@ -43,11 +44,14 @@ export function MobileNav({ appUrl }: { appUrl: string }) {
         {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </button>
 
-      {open && (
-        <div
-          id="mobile-nav-panel"
-          className="fixed inset-x-0 top-16 bottom-0 z-50 overflow-y-auto border-t border-border bg-background px-6 py-6"
-        >
+      {/* Portal to body: the nav bar's backdrop-blur makes it the containing
+          block for fixed descendants, which would collapse this panel */}
+      {open &&
+        createPortal(
+          <div
+            id="mobile-nav-panel"
+            className="fixed inset-x-0 top-16 bottom-0 z-50 overflow-y-auto border-t border-border bg-background px-6 py-6 md:hidden"
+          >
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Tools
           </p>
@@ -118,8 +122,9 @@ export function MobileNav({ appUrl }: { appUrl: string }) {
               Sign in
             </a>
           </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   )
 }
