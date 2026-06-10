@@ -95,6 +95,7 @@ export function MobileNav({ appUrl }: { appUrl: string }) {
               { name: 'About', href: '/about' },
               { name: 'Mission', href: '/mission' },
               { name: 'Pricing', href: '/pricing' },
+              { name: 'Blog', href: '/blog' },
               { name: 'Contact', href: '/contact' },
             ].map((item) => (
               <Link

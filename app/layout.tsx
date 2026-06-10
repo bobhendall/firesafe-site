@@ -151,6 +151,9 @@ export default function RootLayout({
                 <Link href="/pricing" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted">
                   Pricing
                 </Link>
+                <Link href="/blog" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted">
+                  Blog
+                </Link>
                 <Link href="/contact" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted">
                   Contact
                 </Link>
