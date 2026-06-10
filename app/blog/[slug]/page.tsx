@@ -110,6 +110,19 @@ export default async function BlogPostPage({
                 </h2>
               )
             }
+            if (block.type === 'cta') {
+              return (
+                <div key={i} className="rounded-xl border border-border bg-muted/40 p-5">
+                  <p className="text-[15px] leading-relaxed text-muted-foreground">{block.text}</p>
+                  <Link
+                    href={block.href}
+                    className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                  >
+                    {block.label} <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              )
+            }
             if (block.type === 'ul') {
               return (
                 <ul key={i} className="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-muted-foreground marker:text-primary">
