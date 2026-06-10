@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     'AI-powered storage fire protection analysis with commodity classification, rack sprinkler design, ESFR eligibility, flue space rules, and NFPA 13 compliance for warehouses and distribution centers.',
   openGraph: {
+    images: [{ url: '/og/storagepro.png', width: 1200, height: 630 }],
     title: 'StoragePro — NFPA 13 Storage Sprinkler Design | FireSafe.AI',
     description:
       'AI-powered storage fire protection analysis with commodity classification, rack sprinkler design, ESFR eligibility, flue space rules, and NFPA 13 compliance.',

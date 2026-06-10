@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     'NFPA 92 smoke control design tools -- atrium smoke filling, mechanical exhaust, stairwell pressurization, and FDS integration for performance-based analysis.',
   openGraph: {
+    images: [{ url: '/og/smoke-control.png', width: 1200, height: 630 }],
     title: 'Smoke Control Analysis Software | FireSafe.AI',
     description:
       'NFPA 92 smoke control design tools -- atrium smoke filling, mechanical exhaust, stairwell pressurization, and FDS integration for performance-based analysis.',

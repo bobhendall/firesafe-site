@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     'AI-powered egress analysis with ASET/RSET framework, occupant load calculations per IBC, travel distance verification, and evacuation time modeling.',
   openGraph: {
+    images: [{ url: '/og/egress.png', width: 1200, height: 630 }],
     title: 'Egress Analysis & ASET/RSET Calculator | FireSafe.AI',
     description:
       'AI-powered egress analysis with ASET/RSET framework, occupant load calculations per IBC, travel distance verification, and evacuation time modeling.',

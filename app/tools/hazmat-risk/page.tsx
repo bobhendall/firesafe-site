@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     'Hazardous materials analysis and fire risk assessment -- MAQ calculations, control area analysis, combustible dust assessment, and quantitative risk modeling.',
   openGraph: {
+    images: [{ url: '/og/hazmat-risk.png', width: 1200, height: 630 }],
     title: 'HazMat Risk Assessment & MAQ Calculator | FireSafe.AI',
     description:
       'Hazardous materials analysis and fire risk assessment -- MAQ calculations, control area analysis, combustible dust assessment, and quantitative risk modeling.',
